@@ -14,10 +14,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 //add proper comments for each functions
-
+//by vishnu
 public class MainActivity extends AppCompatActivity
 {
-    EditText in;
+    //text deleted
     ListView lv;
 
     ArrayList<String> al=new ArrayList<String>();

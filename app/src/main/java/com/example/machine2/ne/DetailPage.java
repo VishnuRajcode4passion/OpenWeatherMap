@@ -32,15 +32,13 @@ public class DetailPage extends Activity
     TextView des;
 
 
-//ghfshgjkofshgjfsgjl
-
+//adds
     TextView temp;
-
     TextView pre;
     TextView hum;
     TextView win;
     TextView city;
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
