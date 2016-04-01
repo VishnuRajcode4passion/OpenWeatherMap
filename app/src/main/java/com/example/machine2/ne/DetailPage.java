@@ -25,11 +25,14 @@ public class DetailPage extends Activity
 {
 
     TextView des;
-    TextView temp, pre, hum, win, city;
+    TextView temp;
+
+    
+    TextView pre, hum, win, city;
 
     //field added
 
-    
+
        EditText in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
