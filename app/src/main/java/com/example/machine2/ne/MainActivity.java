@@ -18,14 +18,22 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
 {
     EditText in;
-    ArrayList<String> al=new ArrayList<String>();
     ListView lv;
+
+    ArrayList<String> al=new ArrayList<String>();
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv=(ListView)findViewById(R.id.listView);
-        try {
+
+
+
+        try
+        {
             ArrayList<String> filelist = new ArrayList<String>();
 
             Bundle b = getIntent().getExtras();
@@ -36,8 +44,12 @@ public class MainActivity extends AppCompatActivity
             lv.setAdapter(a);
             System.out.println("filelist " + filelist);
         }
+
+
+
         catch (Exception e)
         {
+
 
         }
 
@@ -45,9 +57,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+        // onClickListner added for the listView
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String data=(String)parent.getItemAtPosition(position);
@@ -64,19 +78,22 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.add) {
+        if (id == R.id.add)
+        {
             Intent i=new Intent(MainActivity.this,AddCity.class);
             startActivity(i);
         }
