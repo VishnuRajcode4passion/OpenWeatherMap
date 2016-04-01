@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 //proper comments needed
+//add comments 
 
 public class MainActivity extends AppCompatActivity {
     EditText in;
