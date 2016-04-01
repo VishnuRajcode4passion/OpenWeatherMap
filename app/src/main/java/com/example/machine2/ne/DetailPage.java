@@ -3,6 +3,12 @@ package com.example.machine2.ne;
 /**
  * Created by machine2 on 29/03/16.
  */
+
+
+// New image assets added to the Application Icon
+
+
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -27,7 +33,7 @@ public class DetailPage extends Activity
     TextView des;
     TextView temp;
 
-    
+
     TextView pre, hum, win, city;
 
     //field added
