@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 //add proper comments for each functions
-
+//by paul
 public class MainActivity extends AppCompatActivity
 {
     EditText in;
