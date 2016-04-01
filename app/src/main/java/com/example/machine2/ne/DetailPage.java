@@ -34,37 +34,61 @@ public class DetailPage extends Activity
     TextView temp;
 
 
-    TextView pre, hum, win, city;
+    TextView pre;
+    TextView hum;
+    TextView win;
+    TextView city;
 
     //field added
 
 
-       EditText in;
+    EditText in;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
+
+
+
+
         des = (TextView) findViewById(R.id.textView8);
         temp = (TextView) findViewById(R.id.textView9);
         city = (TextView) findViewById(R.id.textView5);
         pre = (TextView) findViewById(R.id.textView3);
         hum = (TextView) findViewById(R.id.textView4);
         win = (TextView) findViewById(R.id.textView7);
+
+
+
+
         RequestQueue queue = Volley.newRequestQueue(this);
         Bundle b=getIntent().getExtras();
         String m=b.getString("data");
+
+
+
 
         //  String url = "http://api.openweathermap.org/data/2.5/forecast/city?id=1271881&APPID=45df4fca7d202600be0e657e2d0a9dcd";
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + m + "&APPID=45df4fca7d202600be0e657e2d0a9dcd";
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("LOADING...");
         progressDialog.show();
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>()
+        {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONObject response)
+            {
                 // TODO Auto-generated method stub
                 progressDialog.dismiss();
                 System.out.println("RESPONSE " + response);
+
+
+
                 try {
 
                     JSONArray jsonArray = new JSONArray(response.getString("weather"));
@@ -91,13 +115,17 @@ public class DetailPage extends Activity
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener()
+        {
 
 
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error)
+            {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Volley Error ", Toast.LENGTH_LONG).show();
+
+                //To Display The  Error Volley Message
             }
         });
         queue.add(jsObjRequest);
