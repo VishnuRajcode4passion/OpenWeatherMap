@@ -26,10 +26,7 @@ public class DetailPage extends Activity
 
     TextView des;
     TextView temp, pre, hum, win, city;
-
-    //field added
-//comments needed
-    
+//deletes some
        EditText in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
