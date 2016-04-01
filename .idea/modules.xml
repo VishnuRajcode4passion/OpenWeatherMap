@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/OpenWeatherMaps.iml" filepath="$PROJECT_DIR$/OpenWeatherMaps.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/OpenWeatherMap.iml" filepath="$PROJECT_DIR$/OpenWeatherMap.iml" />
+>>>>>>> 71274dc5774812b4d2dd76d1162349f7daeb5d60
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

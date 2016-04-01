@@ -4,24 +4,9 @@ package com.example.machine2.ne;
  * Created by machine2 on 29/03/16.
  */
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
-import android.app.VoiceInteractor;
-import android.content.Intent;
 import android.os.Bundle;
-import android.service.voice.VoiceInteractionSession;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,11 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import static java.lang.Math.round;
-
-public class DetailPage extends Activity {
+public class DetailPage extends Activity
+{
 
     TextView des, temp, pre, hum, win, city;
        EditText in;
