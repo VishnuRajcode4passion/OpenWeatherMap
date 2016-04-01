@@ -28,7 +28,7 @@ public class DetailPage extends Activity
     TextView temp, pre, hum, win, city;
 
     //field added
-
+//comments needed
     
        EditText in;
     @Override
