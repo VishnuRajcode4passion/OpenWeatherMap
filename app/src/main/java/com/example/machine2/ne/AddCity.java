@@ -29,21 +29,37 @@ import java.util.ArrayList;
 /**
  * Created by machine2 on 30/03/16.
  */
-public class AddCity extends Activity {
+public class AddCity extends Activity
+{
 
     EditText search;
     ListView view;
     ImageButton imageButton;
-    ArrayList<String> arrayList = new ArrayList<>();  //ArrayList initilized
-     String name;
 
-    protected void onCreate(Bundle savedInstanceState) {
+
+
+    ArrayList<String> arrayList = new ArrayList<>();  //ArrayList initilized
+
+    String name;
+
+
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addcity);
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+
+
+
+        // Click Lister for the imageButton
+
+
+
+
+        imageButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 arrayList.clear();
@@ -56,31 +72,51 @@ public class AddCity extends Activity {
 //                progressDialog.setTitle("LOADING...");
 //                progressDialog.show();
 
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+
+
+
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>()
+                {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONObject response)
+                    {
                         // TODO Auto-generated method stub
 //                        progressDialog.dismiss();
                         System.out.println("RESPONSE " + response);
-                        try {
+
+
+
+
+                        try
+                        {
 
                             JSONArray jsonArray = new JSONArray(response.getString("list"));
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            for (int i = 0; i < jsonArray.length(); i++)
+                            {
                                 System.out.println(jsonArray);
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 name = jsonObject.getString("name");
                                 arrayList.add(name);
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.color, arrayList);
                                 view.setAdapter(adapter);
-                                view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+
+                                view.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                                {
                                     @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                    {
                                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
                                         alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
 
-                                        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                                        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener()
+                                        {
                                             @Override
-                                            public void onClick(DialogInterface arg0, int arg1) {
+                                            public void onClick(DialogInterface arg0, int arg1)
+                                            {
 //                                                ArrayList<String> mylist = new ArrayList<String>();
 //                                                mylist.add(name);
                                                // System.out.println("array" + mylist);
@@ -110,15 +146,18 @@ public class AddCity extends Activity {
 
                             }
 
-                        } catch (JSONException e) {
+                        } catch (JSONException e)
+                        {
                             e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
+                }, new Response.ErrorListener()
+                {
 
 
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
 //                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Volley Error ", Toast.LENGTH_LONG).show();
                     }
