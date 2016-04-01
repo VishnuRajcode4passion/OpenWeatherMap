@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //by vishnu
 public class MainActivity extends AppCompatActivity
 {
-    //text deleted
+  //nothing
     ListView lv;
 
     ArrayList<String> al=new ArrayList<String>();
