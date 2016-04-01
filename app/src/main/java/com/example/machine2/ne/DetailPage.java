@@ -33,8 +33,7 @@ public class DetailPage extends Activity
     TextView des;
 
 
-//ghfshgjkofshgjfsgjl
-
+//adds
     TextView temp;
 
 
