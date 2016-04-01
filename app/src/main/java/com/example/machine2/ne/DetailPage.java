@@ -24,7 +24,12 @@ import org.json.JSONObject;
 public class DetailPage extends Activity
 {
 
-    TextView des, temp, pre, hum, win, city;
+    TextView des;
+    TextView temp, pre, hum, win, city;
+
+    //field added
+
+    
        EditText in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
