@@ -12,7 +12,6 @@ package com.example.machine2.ne;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,15 +34,11 @@ public class DetailPage extends Activity
 
 //adds
     TextView temp;
-
-
-
     TextView pre;
     TextView hum;
     TextView win;
     TextView city;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
