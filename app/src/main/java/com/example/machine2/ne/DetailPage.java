@@ -72,7 +72,7 @@ public class DetailPage extends Activity {
 
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-                    win.setText(windspeed+ " mps "+winddegree+" degree");
+                    win.setText(windspeed+ " mps "+winddegree+" °");
 
                     String cityname = response.getString("name");
 
