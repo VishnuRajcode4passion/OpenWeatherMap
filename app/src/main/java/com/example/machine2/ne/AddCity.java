@@ -73,60 +73,6 @@ public class AddCity extends Activity
                                 arrayList.add(name);
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                 view.setAdapter(adapter);
-
-
-
-
-                                view.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                                {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-                                    {
-                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
-                                        alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
-
-                                        final String data=(String)parent.getItemAtPosition(position);  // Bug fixed when searching and add city to the list
-
-
-
-                                        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener()
-                                        {
-                                            @Override
-                                            public void onClick(DialogInterface arg0, int arg1)
-                                            {
-//                                                ArrayList<String> mylist = new ArrayList<String>();
-//                                                mylist.add(name);
-                                               // System.out.println("array" + mylist);
-                                                Intent intent = new Intent(AddCity.this, MainActivity.class);
-
-                                                intent.putExtra("mylist", name);
-
-                                                intent.putExtra("mylist", data);
-
-
-                                                MainActivity obj=new MainActivity();
-                                             //   obj.merge();
-                                                startActivity(intent);
-
-
-                                            }
-                                        });
-
-                                        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                finish();
-                                            }
-                                        });
-
-                                        AlertDialog alertDialog = alertDialogBuilder.create();
-                                        alertDialog.show();
-
-                                    }
-                                });
-
-
-
                             }
 
                         } catch (JSONException e)
@@ -158,7 +104,7 @@ public class AddCity extends Activity
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-//                        String name = (String) parent.getItemAtPosition(position);
+                        String name = (String) parent.getItemAtPosition(position);
                         Intent intent = new Intent(AddCity.this, MainActivity.class);
                         intent.putExtra("mylist", name);
                         startActivity(intent);
