@@ -112,6 +112,10 @@ public class AddCity extends Activity
                                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
                                         alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
 
+                                        final String data=(String)parent.getItemAtPosition(position);  // Bug fixed when searching and add city to the list
+
+
+
                                         alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener()
                                         {
                                             @Override
@@ -121,7 +125,12 @@ public class AddCity extends Activity
 //                                                mylist.add(name);
                                                // System.out.println("array" + mylist);
                                                 Intent intent = new Intent(AddCity.this, MainActivity.class);
+
                                                 intent.putExtra("mylist", name);
+
+                                                intent.putExtra("mylist", data);
+
+
                                                 MainActivity obj=new MainActivity();
                                              //   obj.merge();
                                                 startActivity(intent);
