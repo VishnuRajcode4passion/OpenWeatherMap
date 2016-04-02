@@ -99,10 +99,10 @@ public class DetailPage extends Activity
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
                     des.setText(description);
-                    String iconno=jsonObject.getString("icon");
-                    URL url = new URL("http://openweathermap.org/img/w/"+iconno+".png");
-                    Bitmap bmp =  BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    icons.setImageBitmap(bmp);
+//                    String iconno=jsonObject.getString("icon");
+//                    URL url = new URL("http://openweathermap.org/img/w/"+iconno+".png");
+//                    Bitmap bmp =  BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                    icons.setImageBitmap(bmp);
 
                     JSONObject object = response.getJSONObject("main");
                     String tempincelsius = object.getString("temp");
@@ -121,10 +121,10 @@ public class DetailPage extends Activity
                     city.setText(cityname + "," + countryname);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener()
