@@ -35,46 +35,24 @@ public class AddCity extends Activity
     EditText search;
     ListView view;
     ImageButton imageButton;
-
-
-
-    ArrayList<String> arrayList = new ArrayList<>();  //ArrayList initilized
-
+    ArrayList<String> arrayList = new ArrayList<>();
     String name;
-
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addcity);
+        setContentView(R.layout.add_city);
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
-
-
-
-
-        // Click Lister for the imageButton
-
-
-
-
+        view = (ListView) findViewById(R.id.cityList);
         imageButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 arrayList.clear();
-                search = (EditText) findViewById(R.id.search);
-                view = (ListView) findViewById(R.id.view);
+                search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString();
-                //  String url = "http://api.openweathermap.org/data/2.5/forecast/city?id=1271881&APPID=45df4fca7d202600be0e657e2d0a9dcd";
                 String url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
-//                final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
-//                progressDialog.setTitle("LOADING...");
-//                progressDialog.show();
-
-
-
-
 
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>()
                 {
@@ -82,67 +60,20 @@ public class AddCity extends Activity
                     public void onResponse(JSONObject response)
                     {
                         // TODO Auto-generated method stub
-//                        progressDialog.dismiss();
                         System.out.println("RESPONSE " + response);
-
-
-
-
                         try
                         {
 
                             JSONArray jsonArray = new JSONArray(response.getString("list"));
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            for (int i = 0; i < jsonArray.length(); i++)
+                            {
                                 System.out.println(jsonArray);
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 name = jsonObject.getString("name");
                                 arrayList.add(name);
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.color, arrayList);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                 view.setAdapter(adapter);
-
                             }
-
-
-                                view.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                                {
-                                    @Override
-                                    public void onItemClick(final AdapterView<?> parent, View view, final int position, long id)
-                                    {
-                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
-                                        alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
-
-                                        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener()
-                                        {
-                                            @Override
-                                            public void onClick(DialogInterface arg0, int arg1)
-                                            {
-//                                                ArrayList<String> mylist = new ArrayList<String>();
-//                                                mylist.add(name);
-                                               // System.out.println("array" + mylist);
-                                                String data=(String)parent.getItemAtPosition(position);
-                                                Intent intent = new Intent(AddCity.this, MainActivity.class);
-                                                intent.putExtra("mylist", data);
-                                                startActivity(intent);
-
-
-                                            }
-                                        });
-
-                                        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                finish();
-                                            }
-                                        });
-
-                                        AlertDialog alertDialog = alertDialogBuilder.create();
-                                        alertDialog.show();
-
-                                    }
-                                });
-
-
-
 
                         } catch (JSONException e)
                         {
@@ -152,15 +83,44 @@ public class AddCity extends Activity
                 }, new Response.ErrorListener()
                 {
 
-
                     @Override
                     public void onErrorResponse(VolleyError error)
                     {
-//                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Volley Error ", Toast.LENGTH_LONG).show();
                     }
                 });
                 queue.add(jsObjRequest);
+
+            }
+        });
+
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
+                alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
+
+                alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        String name = (String) parent.getItemAtPosition(position);
+                        Intent intent = new Intent(AddCity.this, MainActivity.class);
+                        intent.putExtra("mylist", name);
+                        startActivity(intent);
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
 
             }
         });
