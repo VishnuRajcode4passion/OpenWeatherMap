@@ -26,20 +26,26 @@ import static java.lang.Math.round;
 public class DetailPage extends Activity {
 
     TextView des,temp,pre,hum,win,city;
-    String url = "http://api.openweathermap.org/data/2.5/weather?q=muvattupuzha&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
-
-
+        des = (TextView) findViewById(R.id.textView8);
+        temp = (TextView) findViewById(R.id.textView9);
+        pre = (TextView) findViewById(R.id.textView3);
+        hum = (TextView) findViewById(R.id.textView4);
+        win = (TextView) findViewById(R.id.textView7);
+        city = (TextView) findViewById(R.id.textView5);
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final ProgressDialog  progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("LOADING...");
         progressDialog.show();
+        Bundle b =  getIntent().getExtras();
+        String data =b.getString("data");
+        String url = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
             @Override
