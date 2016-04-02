@@ -13,15 +13,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-//add proper comments for each functions
-//by vishnu
 public class MainActivity extends AppCompatActivity
 {
-  //nothing
     ListView lv;
-
     ArrayList<String> al=new ArrayList<String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,8 +24,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv=(ListView)findViewById(R.id.listView);
-
-
 
         try
         {
@@ -45,23 +38,14 @@ public class MainActivity extends AppCompatActivity
             System.out.println("filelist " + filelist);
         }
 
-
-
         catch (Exception e)
-        {
-
-
-        }
+        { }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        // onClickListner added for the listView
-
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String data=(String)parent.getItemAtPosition(position);
@@ -70,28 +54,22 @@ public class MainActivity extends AppCompatActivity
                 i.putExtra("data",data);
                 startActivity(i);
             }
-
-
         });
 
         }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.add)
         {
             Intent i=new Intent(MainActivity.this,AddCity.class);
