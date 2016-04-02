@@ -11,7 +11,11 @@ package com.example.machine2.ne;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +30,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class DetailPage extends Activity
 {
 
     TextView des;
+    ImageView icons;
 
 
 //adds
@@ -47,6 +56,7 @@ public class DetailPage extends Activity
 
 
         des = (TextView) findViewById(R.id.textView8);
+        icons=(ImageView)findViewById(R.id.icon);
         temp = (TextView) findViewById(R.id.textView9);
         city = (TextView) findViewById(R.id.textView5);
         pre = (TextView) findViewById(R.id.textView3);
@@ -89,6 +99,11 @@ public class DetailPage extends Activity
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
                     des.setText(description);
+                    String iconno=jsonObject.getString("icon");
+                    URL url = new URL("http://openweathermap.org/img/w/"+iconno+".png");
+                    Bitmap bmp =  BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    icons.setImageBitmap(bmp);
+
                     JSONObject object = response.getJSONObject("main");
                     String tempincelsius = object.getString("temp");
                     temp.setText(tempincelsius + " F");
@@ -105,6 +120,10 @@ public class DetailPage extends Activity
                     String countryname = jsonObj.getString("country");
                     city.setText(cityname + "," + countryname);
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

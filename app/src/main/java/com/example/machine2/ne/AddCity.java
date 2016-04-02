@@ -92,8 +92,7 @@ public class AddCity extends Activity
                         {
 
                             JSONArray jsonArray = new JSONArray(response.getString("list"));
-                            for (int i = 0; i < jsonArray.length(); i++)
-                            {
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 System.out.println(jsonArray);
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 name = jsonObject.getString("name");
@@ -101,13 +100,13 @@ public class AddCity extends Activity
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.color, arrayList);
                                 view.setAdapter(adapter);
 
-
+                            }
 
 
                                 view.setOnItemClickListener(new AdapterView.OnItemClickListener()
                                 {
                                     @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                    public void onItemClick(final AdapterView<?> parent, View view, final int position, long id)
                                     {
                                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
                                         alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
@@ -120,10 +119,9 @@ public class AddCity extends Activity
 //                                                ArrayList<String> mylist = new ArrayList<String>();
 //                                                mylist.add(name);
                                                // System.out.println("array" + mylist);
+                                                String data=(String)parent.getItemAtPosition(position);
                                                 Intent intent = new Intent(AddCity.this, MainActivity.class);
-                                                intent.putExtra("mylist", name);
-                                                MainActivity obj=new MainActivity();
-                                             //   obj.merge();
+                                                intent.putExtra("mylist", data);
                                                 startActivity(intent);
 
 
@@ -144,7 +142,7 @@ public class AddCity extends Activity
                                 });
 
 
-                            }
+
 
                         } catch (JSONException e)
                         {
