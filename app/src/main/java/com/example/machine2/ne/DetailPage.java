@@ -1,9 +1,7 @@
 package com.example.machine2.ne;
 
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
-
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,10 +16,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
-
-import static java.lang.Math.round;
 
 public class DetailPage extends Activity {
 
@@ -60,7 +54,7 @@ public class DetailPage extends Activity {
 
                     JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
-                    temp.setText(tempincelsius+ " degree celsius");
+                    temp.setText(tempincelsius+ " °C ");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
