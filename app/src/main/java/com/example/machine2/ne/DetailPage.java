@@ -2,7 +2,14 @@ package com.example.machine2.ne;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +24,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class DetailPage extends Activity {
 
     TextView des,temp,pre,hum,win,city;
+    ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,7 +45,7 @@ public class DetailPage extends Activity {
         hum = (TextView) findViewById(R.id.textView4);
         win = (TextView) findViewById(R.id.textView7);
         city = (TextView) findViewById(R.id.textView5);
-
+        iv = (ImageView) findViewById(R.id.imageView);
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final ProgressDialog  progressDialog = new ProgressDialog(this);
@@ -66,20 +80,26 @@ public class DetailPage extends Activity {
                     String humidity = object.getString("humidity");
 
                     pre.setText(pressure+ " hPa");
-                    hum.setText(humidity+ "%");
+                    hum.setText(humidity + "%");
 
                     JSONObject jsonObject1 = new JSONObject(response.getString("wind"));
 
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-                    win.setText(windspeed+ " mps "+winddegree+" degree");
+                    win.setText(windspeed + " mps " + winddegree + " degree");
 
                     String cityname = response.getString("name");
 
                     JSONObject jsonObj = new JSONObject(response.getString("sys"));
                     String countryname = jsonObj.getString("country");
-
                     city.setText(cityname + "," + countryname);
+
+                    String icon = jsonObject.getString("icon");
+                    String imageurl =  "http://openweathermap.org/img/w/"+icon+".png";
+                    System.out.println(imageurl);
+                    new DownLoadImageTask(iv).execute(imageurl);
+
+
                 }
                 catch (JSONException e) {
                     e.printStackTrace();

@@ -15,41 +15,31 @@ import android.widget.ListView;
 import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
 {
-    ListView lv;
-    ArrayList<String> al=new ArrayList<String>();
+    ListView listView;
+    ArrayList<String> filelist = new ArrayList<String>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lv=(ListView)findViewById(R.id.listView);
-
-        try
-        {
-            ArrayList<String> filelist = new ArrayList<String>();
-
-            Bundle b = getIntent().getExtras();
-           String name = b.getString("mylist");
-            System.out.println("name "+name);
-            filelist.add(name);
-            ArrayAdapter<String> a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
-            lv.setAdapter(a);
-            System.out.println("filelist " + filelist);
-        }
-
-        catch (Exception e)
-        { }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        listView=(ListView)findViewById(R.id.listView);
 
+        try {
+            Bundle b = getIntent().getExtras();
+            String name = b.getString("mylist");
+            filelist.add(name);
+            ArrayAdapter<String> a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
+            listView.setAdapter(a);
+        }
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        catch (Exception e) { }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String data=(String)parent.getItemAtPosition(position);
-
                 Intent i = new Intent(MainActivity.this, DetailPage.class);
                 i.putExtra("data",data);
                 startActivity(i);
@@ -58,27 +48,22 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
         if (id == R.id.add)
         {
             Intent i=new Intent(MainActivity.this,AddCity.class);
             startActivity(i);
         }
-
         return false;
     }
-
-
 
 }
