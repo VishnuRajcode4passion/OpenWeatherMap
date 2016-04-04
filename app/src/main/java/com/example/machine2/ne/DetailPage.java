@@ -1,12 +1,7 @@
 package com.example.machine2.ne;
 
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -24,17 +19,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-
-import static java.lang.Math.round;
 
 public class DetailPage extends Activity {
 
@@ -84,7 +68,7 @@ public class DetailPage extends Activity {
                      new DownloadImageTask(imageView).execute(base);
                             JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
-                    temparature.setText(tempincelsius+ " degree celsius");
+        temparature.setText(tempincelsius+ " degree celsius");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
@@ -96,7 +80,7 @@ public class DetailPage extends Activity {
 
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-                    wind.setText(windspeed+ " mps "+winddegree+" degree");
+      wind.setText(windspeed+ " mps "+winddegree+" degree");
 
                     String cityname = response.getString("name");
 
