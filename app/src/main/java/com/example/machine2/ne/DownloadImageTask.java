@@ -28,7 +28,8 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
     }
     return logo;
 }
-protected void onPostExecute(Bitmap result){
+protected void onPostExecute(Bitmap result)
+{
     imageView.setImageBitmap(result);
 }
 }
