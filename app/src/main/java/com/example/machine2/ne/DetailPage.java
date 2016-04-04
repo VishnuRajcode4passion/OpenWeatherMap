@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,22 +26,32 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import static java.lang.Math.round;
 
 public class DetailPage extends Activity {
 
-    TextView des,temp,pre,hum,win,city;
+    TextView desription,temparature,pressures,humiditys,wind,city;
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
-        des = (TextView) findViewById(R.id.textView8);
-        temp = (TextView) findViewById(R.id.textView9);
-        pre = (TextView) findViewById(R.id.textView3);
-        hum = (TextView) findViewById(R.id.textView4);
-        win = (TextView) findViewById(R.id.textView7);
+        desription = (TextView) findViewById(R.id.textView8);
+        imageView=(ImageView)findViewById(R.id.showicon);
+        temparature = (TextView) findViewById(R.id.textView9);
+        pressures = (TextView) findViewById(R.id.textView3);
+        humiditys = (TextView) findViewById(R.id.textView4);
+        wind = (TextView) findViewById(R.id.textView7);
         city = (TextView) findViewById(R.id.textView5);
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -43,8 +59,8 @@ public class DetailPage extends Activity {
         final ProgressDialog  progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("LOADING...");
         progressDialog.show();
-        Bundle b =  getIntent().getExtras();
-        String data =b.getString("data");
+        Bundle bundle =  getIntent().getExtras();
+        String data =bundle.getString("data");
         String url = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
@@ -61,24 +77,26 @@ public class DetailPage extends Activity {
 
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
-                    des.setText(description);
+                    desription.setText(description);
 
-
-                    JSONObject object = response.getJSONObject("main");
+                    String icon=jsonObject.getString("icon");
+                     String base= "http://openweathermap.org/img/w/"+icon+".png";
+                     new DownloadImageTask(imageView).execute(base);
+                            JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
-                    temp.setText(tempincelsius+ " degree celsius");
+                    temparature.setText(tempincelsius+ " degree celsius");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
 
-                    pre.setText(pressure+ " hPa");
-                    hum.setText(humidity+ "%");
+                    pressures.setText(pressure+ " hPa");
+                    humiditys.setText(humidity+ "%");
 
                     JSONObject jsonObject1 = new JSONObject(response.getString("wind"));
 
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-                    win.setText(windspeed+ " mps "+winddegree+" degree");
+                    wind.setText(windspeed+ " mps "+winddegree+" degree");
 
                     String cityname = response.getString("name");
 
