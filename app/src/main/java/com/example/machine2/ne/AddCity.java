@@ -51,46 +51,48 @@ public class AddCity extends Activity
             public void onClick(View v) {
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
-                String list = search.getText().toString();
-                String url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
-
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>()
+                String list = search.getText().toString().trim();
+                if(list.isEmpty() || list.length() == 0 || list.equals("") || list== null)
                 {
-                    @Override
-                    public void onResponse(JSONObject response)
-                    {
-                        // TODO Auto-generated method stub
-                        System.out.println("RESPONSE " + response);
-                        try
-                        {
+                    Toast.makeText(getApplication(), "Enter a city", Toast.LENGTH_LONG).show();
+                }
 
-                            JSONArray jsonArray = new JSONArray(response.getString("list"));
-                            for (int i = 0; i < jsonArray.length(); i++)
-                            {
-                                System.out.println(jsonArray);
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                name = jsonObject.getString("name");
-                                arrayList.add(name);
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
-                                listView.setAdapter(adapter);
+                 else {
+
+
+                    String url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+
+                     JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // TODO Auto-generated method stub
+                            System.out.println("RESPONSE " + response);
+                            try {
+
+                                JSONArray jsonArray = new JSONArray(response.getString("list"));
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    System.out.println(jsonArray);
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    name = jsonObject.getString("name");
+                                    arrayList.add(name);
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
+                                    listView.setAdapter(adapter);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                        } catch (JSONException e)
-                        {
-                            e.printStackTrace();
                         }
-                    }
-                }, new Response.ErrorListener()
-                {
+                    }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        Toast.makeText(getApplicationContext(), "Volley Error ", Toast.LENGTH_LONG).show();
-                    }
-                });
-                queue.add(jsObjRequest);
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), "volley error", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    queue.add(jsObjRequest);
 
+                }
             }
         });
 
