@@ -59,7 +59,7 @@
         android:gravity="center"
         android:textSize="30sp"
         android:id="@+id/textView5"
-        android:textColor="#f78d03"
+        android:textColor="#060606"
         android:layout_alignParentTop="true"
         android:layout_marginTop="37dp"
 
@@ -98,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+
         android:textColor="#FFF703B6"
         android:textSize="20sp"
         android:id="@+id/textView8"
