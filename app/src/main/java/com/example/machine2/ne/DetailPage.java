@@ -84,7 +84,6 @@ public class DetailPage extends Activity {
                     JSONObject jsonObj = new JSONObject(response.getString("sys"));
                     String countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
-
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
