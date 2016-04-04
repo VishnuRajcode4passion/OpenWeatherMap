@@ -44,9 +44,9 @@ public class AddCity extends Activity
         setContentView(R.layout.add_city);
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
-       listView = (ListView) findViewById(R.id.cityList);
-        imageButton.setOnClickListener(new View.OnClickListener()
-        {
+        listView = (ListView) findViewById(R.id.cityList);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 arrayList.clear();
@@ -115,7 +115,6 @@ public class AddCity extends Activity
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // finish();
                     }
                 });
 

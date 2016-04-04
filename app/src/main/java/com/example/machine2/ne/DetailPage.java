@@ -21,12 +21,7 @@ import org.json.JSONObject;
 
 public class DetailPage extends Activity {
 
-
-<<<<<<< HEAD
-    TextView desription,temparature,pressure,humidity,wind,city;
-=======
     TextView tvDesription,tvTemparature,tvPressure,tvHumidity,tvWind,tvCity;
->>>>>>> 9e06b083f319bdf19a2f13e850e87592999e2663
     ImageView imageView;
 
 
@@ -37,19 +32,12 @@ public class DetailPage extends Activity {
         setContentView(R.layout.detail);
         tvDesription = (TextView) findViewById(R.id.textView8);
         imageView=(ImageView)findViewById(R.id.showicon);
-<<<<<<< HEAD
-        temparature = (TextView) findViewById(R.id.textView9);
-        pressure = (TextView) findViewById(R.id.textView3);
-        humidity = (TextView) findViewById(R.id.textView4);
-        wind = (TextView) findViewById(R.id.textView7);
-        city = (TextView) findViewById(R.id.textView5);
-=======
         tvTemparature = (TextView) findViewById(R.id.textView9);
         tvPressure = (TextView) findViewById(R.id.textView3);
         tvHumidity = (TextView) findViewById(R.id.textView4);
         tvWind = (TextView) findViewById(R.id.textView7);
         tvCity = (TextView) findViewById(R.id.textView5);
->>>>>>> 9e06b083f319bdf19a2f13e850e87592999e2663
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final ProgressDialog  progressDialog = new ProgressDialog(this);
@@ -67,57 +55,35 @@ public class DetailPage extends Activity {
                 System.out.println("RESPONSE "+response);
 
                 try {
-
                     JSONArray jsonArray = new JSONArray(response.getString("weather"));
                     System.out.println(jsonArray);
-
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
                     tvDesription.setText(description);
 
                     String icon=jsonObject.getString("icon");
-                     String base= "http://openweathermap.org/img/w/"+icon+".png";
-                     new DownloadImageTask(imageView).execute(base);
-                            JSONObject object = response.getJSONObject("main");
+                    String base= "http://openweathermap.org/img/w/"+icon+".png";
+                    new DownloadImageTask(imageView).execute(base);
+
+                    JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
-<<<<<<< HEAD
-                    temparature.setText(tempincelsius+ " °C");
-=======
-                    tvTemparature.setText(tempincelsius+ " degree celsius");
->>>>>>> 9e06b083f319bdf19a2f13e850e87592999e2663
+                    tvTemparature.setText(tempincelsius+ " °C");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
 
-
-<<<<<<< HEAD
-                    pressure.setText(pressure+ " hPa");
-                    humidity.setText(humidity+ "%");
-=======
                     tvPressure.setText(pressure+ " hPa");
                     tvHumidity.setText(humidity+ "%");
->>>>>>> 9e06b083f319bdf19a2f13e850e87592999e2663
 
                     JSONObject jsonObject1 = new JSONObject(response.getString("wind"));
-
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-<<<<<<< HEAD
-
-
-                    wind.setText(windspeed+ " mps "+winddegree+" °");
-=======
-                    tvWind.setText(windspeed+ " mps "+winddegree+" degree");
->>>>>>> 9e06b083f319bdf19a2f13e850e87592999e2663
+                    tvWind.setText(windspeed+ " mps "+winddegree+" °");
 
                     String cityname = response.getString("name");
-
                     JSONObject jsonObj = new JSONObject(response.getString("sys"));
                     String countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
-
-
-
 
                 }
                 catch (JSONException e) {

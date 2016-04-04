@@ -10,11 +10,12 @@ import java.net.URL;
 
 
 public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
-ImageView imageView;
 
+    ImageView imageView;
 
-    this.imageView = imageView;
-}
+    public DownloadImageTask(ImageView imageView) {
+        this.imageView = imageView;
+    }
 
     protected Bitmap doInBackground(String...urls){
     String urlOfImage = urls[0];
