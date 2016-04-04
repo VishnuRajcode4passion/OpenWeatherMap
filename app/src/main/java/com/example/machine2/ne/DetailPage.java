@@ -2,12 +2,6 @@ package com.example.machine2.ne;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.widget.ImageView;
@@ -25,14 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 public class DetailPage extends Activity {
-
 
     TextView tvDesription,tvTemparature,tvPressure,tvHumidity,tvWind,tvCity;
     ImageView imageView;
@@ -50,6 +37,7 @@ public class DetailPage extends Activity {
         tvHumidity = (TextView) findViewById(R.id.textView4);
         tvWind = (TextView) findViewById(R.id.textView7);
         tvCity = (TextView) findViewById(R.id.textView5);
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final ProgressDialog  progressDialog = new ProgressDialog(this);
@@ -67,42 +55,35 @@ public class DetailPage extends Activity {
                 System.out.println("RESPONSE "+response);
 
                 try {
-
                     JSONArray jsonArray = new JSONArray(response.getString("weather"));
                     System.out.println(jsonArray);
-
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
                     tvDesription.setText(description);
 
                     String icon=jsonObject.getString("icon");
-                     String base= "http://openweathermap.org/img/w/"+icon+".png";
-                     new DownLoadImageTask(imageView).execute(base);
-                            JSONObject object = response.getJSONObject("main");
+                    String base= "http://openweathermap.org/img/w/"+icon+".png";
+                    new DownloadImageTask(imageView).execute(base);
+
+                    JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
-                    tvTemparature.setText(tempincelsius+ " degree celsius");
+                    tvTemparature.setText(tempincelsius+ " °C");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
-
 
                     tvPressure.setText(pressure+ " hPa");
                     tvHumidity.setText(humidity+ "%");
 
                     JSONObject jsonObject1 = new JSONObject(response.getString("wind"));
-
                     String windspeed = jsonObject1.getString("speed");
                     String winddegree = jsonObject1.getString("deg");
-                    tvWind.setText(windspeed+ " mps "+winddegree+" degree");
+                    tvWind.setText(windspeed+ " mps "+winddegree+" °");
 
                     String cityname = response.getString("name");
-
                     JSONObject jsonObj = new JSONObject(response.getString("sys"));
                     String countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
-
-
-
 
                 }
                 catch (JSONException e) {

@@ -8,12 +8,14 @@ import android.widget.ImageView;
 import java.io.InputStream;
 import java.net.URL;
 
-public class DownLoadImageTask extends AsyncTask<String,Void,Bitmap> {
-ImageView imageView;
 
-public DownLoadImageTask(ImageView imageView){
-    this.imageView = imageView;
-}
+public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
+
+    ImageView imageView;
+
+    public DownloadImageTask(ImageView imageView) {
+        this.imageView = imageView;
+    }
 
     protected Bitmap doInBackground(String...urls){
     String urlOfImage = urls[0];
