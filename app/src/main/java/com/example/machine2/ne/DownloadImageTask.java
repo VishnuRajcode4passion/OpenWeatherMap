@@ -27,6 +27,7 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
         e.printStackTrace();
     }
     return logo;
+        //set image on bitmap
 }
 protected void onPostExecute(Bitmap result)
 {
