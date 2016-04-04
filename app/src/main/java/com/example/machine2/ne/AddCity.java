@@ -33,7 +33,7 @@ public class AddCity extends Activity
 {
 
     EditText search;
-    ListView view;
+    ListView listView;
     ImageButton imageButton;
     ArrayList<String> arrayList = new ArrayList<>();
     String name;
@@ -44,7 +44,7 @@ public class AddCity extends Activity
         setContentView(R.layout.add_city);
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
-        view = (ListView) findViewById(R.id.cityList);
+       listView = (ListView) findViewById(R.id.cityList);
         imageButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -72,7 +72,7 @@ public class AddCity extends Activity
                                 name = jsonObject.getString("name");
                                 arrayList.add(name);
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
-                                view.setAdapter(adapter);
+                                listView.setAdapter(adapter);
                             }
 
                         } catch (JSONException e)
@@ -94,7 +94,7 @@ public class AddCity extends Activity
             }
         });
 
-        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
@@ -115,7 +115,7 @@ public class AddCity extends Activity
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                       // finish();
                     }
                 });
 
