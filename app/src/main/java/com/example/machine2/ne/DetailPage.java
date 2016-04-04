@@ -2,9 +2,14 @@ package com.example.machine2.ne;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,10 +25,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class DetailPage extends Activity {
+
 
     TextView desription,temparature,pressures,humiditys,wind,city;
     ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +50,6 @@ public class DetailPage extends Activity {
         humiditys = (TextView) findViewById(R.id.textView4);
         wind = (TextView) findViewById(R.id.textView7);
         city = (TextView) findViewById(R.id.textView5);
-
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final ProgressDialog  progressDialog = new ProgressDialog(this);
@@ -65,13 +77,14 @@ public class DetailPage extends Activity {
 
                     String icon=jsonObject.getString("icon");
                      String base= "http://openweathermap.org/img/w/"+icon+".png";
-                     new DownloadImageTask(imageView).execute(base);
+                     new DownLoadImageTask(imageView).execute(base);
                             JSONObject object = response.getJSONObject("main");
                     String tempincelsius= object.getString("temp");
         temparature.setText(tempincelsius+ " degree celsius");
 
                     String pressure = object.getString("pressure");
                     String humidity = object.getString("humidity");
+
 
                     pressures.setText(pressure+ " hPa");
                     humiditys.setText(humidity+ "%");
@@ -86,8 +99,11 @@ public class DetailPage extends Activity {
 
                     JSONObject jsonObj = new JSONObject(response.getString("sys"));
                     String countryname = jsonObj.getString("country");
-
                     city.setText(cityname + "," + countryname);
+
+
+
+
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
