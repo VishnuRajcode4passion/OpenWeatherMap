@@ -12,23 +12,28 @@ import java.net.URL;
 public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
 
     ImageView imageView;
+    String urlOfImage;
+    Bitmap image;
+    InputStream inputStream;
 
     public DownloadImageTask(ImageView imageView) {
+
         this.imageView = imageView;
     }
-
+    // fetching image from url
     protected Bitmap doInBackground(String...urls){
-    String urlOfImage = urls[0];
-    Bitmap logo = null;
+        urlOfImage = urls[0];
+        image = null;
     try{
-        InputStream is = new URL(urlOfImage).openStream();
-        logo = BitmapFactory.decodeStream(is);
+        inputStream = new URL(urlOfImage).openStream();
+        image = BitmapFactory.decodeStream(inputStream);
     }catch(Exception e){
         e.printStackTrace();
     }
-    return logo;
-        //set image on bitmap
+    return image;
+
 }
+    //set image on bitmap
 protected void onPostExecute(Bitmap result)
 {
     imageView.setImageBitmap(result);

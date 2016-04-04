@@ -21,8 +21,34 @@ import org.json.JSONObject;
 
 public class DetailPage extends Activity {
 
-    TextView tvDesription,tvTemparature,tvPressure,tvHumidity,tvWind,tvCity;
+    TextView tvDesription;
+    TextView tvTemparature;
+    TextView tvPressure;
+    TextView tvHumidity;
+    TextView tvWind;
+    TextView tvCity;
     ImageView imageView;
+    RequestQueue queue;
+    ProgressDialog  progressDialog;
+    Bundle bundle;
+    String data;
+    String url;
+    JsonObjectRequest jsObjRequest;
+    JSONArray jsonArray;
+    JSONObject jsonObject;
+    String description;
+    String icon;
+    String base;
+    JSONObject object;
+    String tempincelsius;
+    String pressure;
+    String humidity;
+    String windspeed;
+    JSONObject jsonObject1;
+    String winddegree;
+    String cityname;
+    JSONObject jsonObj;
+    String countryname;
 
 
     @Override
@@ -37,51 +63,49 @@ public class DetailPage extends Activity {
         tvWind = (TextView) findViewById(R.id.textView7);
         tvCity = (TextView) findViewById(R.id.textView5);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        final ProgressDialog  progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("LOADING...");
         progressDialog.show();
-        Bundle bundle =  getIntent().getExtras();
-        String data =bundle.getString("data");
-        String url = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
+        queue = Volley.newRequestQueue(this);
+        // Getting the data from previous activity and passing that data into url and displaying all the informations related to that particular data.
+        bundle =  getIntent().getExtras();
+        data =bundle.getString("data");
+        url = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+        jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
             @Override
+            // JSON response will be obtained in this method if there are no network issues
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 progressDialog.dismiss();
-                System.out.println("RESPONSE "+response);
-
                 try {
-                    JSONArray jsonArray = new JSONArray(response.getString("weather"));
-                    System.out.println(jsonArray);
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    String description = jsonObject.getString("description");
+                    jsonArray = new JSONArray(response.getString("weather"));
+                    jsonObject = jsonArray.getJSONObject(0);
+                    description = jsonObject.getString("description");
                     tvDesription.setText(description);
 
-                    String icon=jsonObject.getString("icon");
-                    String base= "http://openweathermap.org/img/w/"+icon+".png";
+                    icon=jsonObject.getString("icon");
+                    base= "http://openweathermap.org/img/w/"+icon+".png";
                     new DownloadImageTask(imageView).execute(base);
 
-                    JSONObject object = response.getJSONObject("main");
-                    String tempincelsius= object.getString("temp");
+                    object = response.getJSONObject("main");
+                    tempincelsius= object.getString("temp");
                     tvTemparature.setText(tempincelsius+ " °C");
 
-                    String pressure = object.getString("pressure");
-                    String humidity = object.getString("humidity");
+                    pressure = object.getString("pressure");
+                    humidity = object.getString("humidity");
 
                     tvPressure.setText(pressure+ " hPa");
                     tvHumidity.setText(humidity+ "%");
 
-                    JSONObject jsonObject1 = new JSONObject(response.getString("wind"));
-                    String windspeed = jsonObject1.getString("speed");
-                    String winddegree = jsonObject1.getString("deg");
+                    jsonObject1 = new JSONObject(response.getString("wind"));
+                    windspeed = jsonObject1.getString("speed");
+                    winddegree = jsonObject1.getString("deg");
                     tvWind.setText(windspeed+ " mps "+winddegree+" °");
 
-                    String cityname = response.getString("name");
-                    JSONObject jsonObj = new JSONObject(response.getString("sys"));
-                    String countryname = jsonObj.getString("country");
+                    cityname = response.getString("name");
+                    jsonObj = new JSONObject(response.getString("sys"));
+                    countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
                 }
                 catch (JSONException e) {
@@ -90,9 +114,8 @@ public class DetailPage extends Activity {
                 }
             }
         }, new Response.ErrorListener() {
-
-
             @Override
+            //If there is any error in network connection ,then this method will be executed
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(),"Network Error ",Toast.LENGTH_LONG).show();

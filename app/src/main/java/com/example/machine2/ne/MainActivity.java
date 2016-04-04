@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity
 {
     ListView listView;
     ArrayList<String> filelist = new ArrayList<String>();
+    Bundle b;
+    String name;
+    ArrayAdapter<String> a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +29,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
 
+        //exception has to be handled when the main activity is first launched
         try {
-            Bundle b = getIntent().getExtras();
-            String name = b.getString("mylist");
+            // Getting the data from previous activity and showing in list view.
+            b = getIntent().getExtras();
+            name = b.getString("mylist");
             filelist.add(name);
-            ArrayAdapter<String> a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
+            a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(a);
         }
 
         catch (Exception e) { }
 
+        //when clicking the particular item in listview ,pass the data to detailPage activity.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
