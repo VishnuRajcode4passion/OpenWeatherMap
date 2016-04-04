@@ -29,32 +29,22 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
-<<<<<<< HEAD
 
         //exception has to be handled when the main activity is first launched
         try {
             // Getting the data from previous activity and showing in list view.
             b = getIntent().getExtras();
             name = b.getString("mylist");
-=======
-      //fetch data from the Addcity
-        try {
-            Bundle bundle = getIntent().getExtras();
-            String name = bundle.getString("mylist");
->>>>>>> 10e3e3d0bb63524a4ee42e416591a1e23f9ddf48
+
             filelist.add(name);
             a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(a);
         }
 
         catch (Exception e) { }
-<<<<<<< HEAD
+
 
         //when clicking the particular item in listview ,pass the data to detailPage activity.
-=======
-        //Onclick of the listview
-        //Display the details of the selected city
->>>>>>> 10e3e3d0bb63524a4ee42e416591a1e23f9ddf48
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
