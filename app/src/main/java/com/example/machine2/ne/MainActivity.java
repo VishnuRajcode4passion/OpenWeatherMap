@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+//Main activity class
 public class MainActivity extends AppCompatActivity
 {
     ListView listView;
@@ -25,17 +26,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
-
+      //fetch data from the Addcity
         try {
-            Bundle b = getIntent().getExtras();
-            String name = b.getString("mylist");
+            Bundle bundle = getIntent().getExtras();
+            String name = bundle.getString("mylist");
             filelist.add(name);
             ArrayAdapter<String> a = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(a);
         }
 
         catch (Exception e) { }
-
+        //Onclick of the listview
+        //Display the details of the selected city
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
