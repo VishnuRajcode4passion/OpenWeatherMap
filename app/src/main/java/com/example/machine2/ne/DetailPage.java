@@ -27,7 +27,6 @@ public class DetailPage extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
         tvDesription = (TextView) findViewById(R.id.textView8);
