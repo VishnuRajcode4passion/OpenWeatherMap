@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 public class AddCity extends Activity
 {
   //variable declaration
+    TextView addCity;
     EditText search;
     ListView listView;
     ImageButton imageButton;
@@ -56,12 +58,15 @@ public class AddCity extends Activity
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
+        addCity = (TextView)findViewById(R.id.textView11);
+        addCity.setVisibility(View.INVISIBLE);
 
         //Onclick of image button
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addCity.setVisibility(View.VISIBLE);
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString().trim();
