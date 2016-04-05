@@ -2,7 +2,6 @@
 <items version="2" >
 
     <item
-<<<<<<< HEAD
         jar="/Users/machine2/OpenWeatherMaps/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -50,55 +49,6 @@
         revision="23.0.2"
         sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
         <dex dex="/Users/machine2/OpenWeatherMaps/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_fc9cf12680219af5162fae17cc599b2dbecd0b02.jar" />
-=======
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_b188721fc0b060315c95f92b9cbf6ee2ddbaf261.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_c91a4a8b6a200b48f9bb6bf13ebae1e1e2c4a86b.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_a92f9c89fa23a2fed8aab11e86b85c02f7b72ca8.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_f0f29c3c46f5443674f7cab050f2193b519d6a8c.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/library-aar/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/com.mcxiaoke.volley-library-aar-1.0.0_1ddd4da8c66033f882a6cf99e81454eaebc3fffa.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_493016bec83a537e5d34ae74243f933eaee5bae4.jar" />
-    </item>
-    <item
-        jar="/Users/machine3/OpenWeatherMap2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/machine3/OpenWeatherMap2/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_a387ed297216439c6572326a6bba410afb78ba57.jar" />
->>>>>>> 781008fc261db234fc43697a0ae9c7d3bd365786
     </item>
 
 </items>
