@@ -3,6 +3,7 @@ package com.example.machine2.ne;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,10 @@ import org.json.JSONObject;
 public class DetailPage extends Activity {
 
     TextView des,temp,pre,hum,win,city;
+    ImageView iconView;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,6 +36,15 @@ public class DetailPage extends Activity {
         hum = (TextView) findViewById(R.id.textView4);
         win = (TextView) findViewById(R.id.textView7);
         city = (TextView) findViewById(R.id.textView5);
+
+        iconView=(ImageView)findViewById(R.id.icon);
+
+
+        //new LoadImage().execute("http://openweathermap.org/img/w/"+icon+".png");
+
+
+
+        iconView=(ImageView)findViewById(R.id.icon);
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -53,9 +67,15 @@ public class DetailPage extends Activity {
                     JSONArray jsonArray = new JSONArray(response.getString("weather"));
                     System.out.println(jsonArray);
 
+
+
+
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                     String description = jsonObject.getString("description");
                     des.setText(description);
+
+
+
 
 
                     JSONObject object = response.getJSONObject("main");
@@ -80,6 +100,14 @@ public class DetailPage extends Activity {
                     String countryname = jsonObj.getString("country");
 
                     city.setText(cityname + "," + countryname);
+
+
+
+
+                    String icon = jsonObject.getString("icon");
+                    String imageurl =  "http://openweathermap.org/img/w/"+icon+".png";
+                    System.out.println(imageurl);
+                    new LoadImage(iconView).execute(imageurl);
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -101,4 +129,6 @@ public class DetailPage extends Activity {
     }
 
 
+
 }
+
