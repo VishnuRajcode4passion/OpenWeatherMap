@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DetailPage extends Activity {
+public class DetailPage extends AppCompatActivity {
 
     TextView tvDesription;
     TextView tvTemparature;
@@ -55,6 +57,8 @@ public class DetailPage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         tvDesription = (TextView) findViewById(R.id.textView8);
         imageView=(ImageView)findViewById(R.id.showicon);
         tvTemparature = (TextView) findViewById(R.id.textView9);
