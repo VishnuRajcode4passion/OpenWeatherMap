@@ -35,26 +35,45 @@ import java.util.ArrayList;
  */
 public class AddCity extends Activity
 {
+
+
   //variable declaration
     TextView addCity;
+
     EditText search;
+
     ListView listView;
+
     ImageButton imageButton;
+
     ArrayList<String> arrayList = new ArrayList<>();
+
     String name;
+
     String url;
+
     JSONArray jsonArray;
+
     JsonObjectRequest jsObjRequest;
+
     JSONObject jsonObject;
+
     ArrayAdapter<String> adapter;
+
     AlertDialog.Builder alertDialogBuilder;
+
     Intent intent;
+
     AlertDialog alertDialog;
+
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city);
+
+
+
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
@@ -63,12 +82,15 @@ public class AddCity extends Activity
 
         //Onclick of image button
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+                imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 addCity.setVisibility(View.VISIBLE);
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
+
+
                 String list = search.getText().toString().trim();
                 if(list.isEmpty() || list.length() == 0 || list.equals("") || list== null)
                 {
@@ -87,14 +109,15 @@ public class AddCity extends Activity
                             System.out.println("RESPONSE " + response);
                             try {
 
-                                 jsonArray = new JSONArray(response.getString("list"));
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    System.out.println(jsonArray);
-                                     jsonObject = jsonArray.getJSONObject(i);
-                                    name = jsonObject.getString("name");
-                                    arrayList.add(name);
-                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
-                                    listView.setAdapter(adapter);
+                                        jsonArray = new JSONArray(response.getString("list"));
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                        System.out.println(jsonArray);
+                                        jsonObject = jsonArray.getJSONObject(i);
+                                        name = jsonObject.getString("name");
+
+                                         arrayList.add(name);
+                                         adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
+                                         listView.setAdapter(adapter);
                                 }
 
                             } catch (JSONException e) {
@@ -105,7 +128,7 @@ public class AddCity extends Activity
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), "volley error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Location You Are Entered Not Found", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(jsObjRequest);
@@ -115,12 +138,12 @@ public class AddCity extends Activity
         });
          //The onclick of the list view
         //Searching city results are displayed on this listview
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
-                 alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
-                alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
+                  alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
+                  alertDialogBuilder.setMessage("Do You want to Add "+name+" To List ???");
 
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override

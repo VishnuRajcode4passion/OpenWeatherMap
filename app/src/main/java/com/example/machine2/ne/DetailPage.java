@@ -27,32 +27,39 @@ public class DetailPage extends Activity {
     TextView tvHumidity;
     TextView tvWind;
     TextView tvCity;
+
     ImageView imageView;
+
     RequestQueue queue;
+
     ProgressDialog progressDialog;
     Bundle bundle;
+
     String data;
     String url;
-    JsonObjectRequest jsObjRequest;
-    JSONArray jsonArray;
-    JSONObject jsonObject;
     String description;
     String icon;
     String base;
-    JSONObject object;
     String tempincelsius;
     String pressure;
     String humidity;
     String windspeed;
-    JSONObject jsonObject1;
     String winddegree;
     String cityname;
-    JSONObject jsonObj;
     String countryname;
+
+    JsonObjectRequest jsObjRequest;
+    JSONArray jsonArray;
+    JSONObject jsonObject;
+    JSONObject object;
+    JSONObject jsonObject1;
+    JSONObject jsonObj;
+
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
 
@@ -66,7 +73,7 @@ public class DetailPage extends Activity {
 
         progressDialog = new ProgressDialog(this);
 
-        progressDialog.setTitle("LOADING...");
+        progressDialog.setTitle("Loading Weather Details"); // print dialog while fetching data from the network
         progressDialog.show();
 
         queue = Volley.newRequestQueue(this);
@@ -120,7 +127,7 @@ public class DetailPage extends Activity {
             //If there is any error in network connection ,then this method will be executed
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Network Error ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), " Network Error ", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(jsObjRequest);
