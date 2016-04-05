@@ -59,6 +59,7 @@ public class DetailPage extends AppCompatActivity {
         setContentView(R.layout.detail);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
         tvDesription = (TextView) findViewById(R.id.textView8);
         imageView=(ImageView)findViewById(R.id.showicon);
         tvTemparature = (TextView) findViewById(R.id.textView9);

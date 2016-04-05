@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 /*The activity for add the city to Main Activity
 
  */
-public class AddCity extends Activity
+public class AddCity extends AppCompatActivity
 {
   //variables declaration
     TextView addCity;
