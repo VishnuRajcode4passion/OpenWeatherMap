@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String data=(String)parent.getItemAtPosition(position);
-                Intent i = new Intent(MainActivity.this, DetailPage.class);
+              //  Intent i = new Intent(MainActivity.this, DetailPage.class);
+                Intent i = new Intent(MainActivity.this,SlidingMainActivity.class);
                 i.putExtra("data",data);
                 startActivity(i);
             }
