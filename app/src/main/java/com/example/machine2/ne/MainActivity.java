@@ -33,11 +33,8 @@ public class MainActivity extends AppCompatActivity
         //exception has to be handled when the main activity is first launched
         try {
             // Getting the data from previous activity and showing in list view.
-
-
             bundle = getIntent().getExtras();
             name = bundle.getString("mylist");
-
             filelist.add(name);
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(arrayAdapter);

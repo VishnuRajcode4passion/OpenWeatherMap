@@ -35,7 +35,7 @@ import java.util.ArrayList;
  */
 public class AddCity extends Activity
 {
-  //variable declaration
+  //variables declaration
     TextView addCity;
     EditText search;
     ListView listView;
@@ -62,7 +62,6 @@ public class AddCity extends Activity
         addCity.setVisibility(View.INVISIBLE);
 
         //Onclick of image button
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +75,7 @@ public class AddCity extends Activity
                 }
 
                  else {
-
-//fetch data from the internet with selected city
+                         //fetch data from the internet with selected city
                      url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
                     //Request for the json objects
                      jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -90,10 +88,10 @@ public class AddCity extends Activity
                                  jsonArray = new JSONArray(response.getString("list"));
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     System.out.println(jsonArray);
-                                     jsonObject = jsonArray.getJSONObject(i);
+                                    jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
                                     arrayList.add(name);
-                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
+                                    adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                     listView.setAdapter(adapter);
                                 }
 
@@ -119,9 +117,9 @@ public class AddCity extends Activity
 
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
-                 alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
-                alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
 
+                alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
+                alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
