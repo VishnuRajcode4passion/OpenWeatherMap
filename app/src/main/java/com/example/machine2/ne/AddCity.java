@@ -61,7 +61,7 @@ public class AddCity extends Activity
         addCity = (TextView)findViewById(R.id.textView11);
         addCity.setVisibility(View.INVISIBLE);
 
-        //Onclick of image button
+        //Onclick  of  image button
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
