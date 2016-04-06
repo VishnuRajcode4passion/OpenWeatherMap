@@ -22,6 +22,8 @@ package com.example.machine2.ne;
         import org.json.JSONException;
         import org.json.JSONObject;
 
+        import java.util.Date;
+
 public class TabFragment1 extends Fragment {
 
         TextView tvDesription;
@@ -30,6 +32,8 @@ public class TabFragment1 extends Fragment {
         TextView tvHumidity;
         TextView tvWind;
         TextView tvCity;
+    TextView tvGroundLevel;
+    TextView tvSeaLevel;
         ImageView imageView;
         RequestQueue queue;
         ProgressDialog progressDialog;
@@ -52,6 +56,8 @@ public class TabFragment1 extends Fragment {
         String cityname;
         JSONObject jsonObj;
         String countryname;
+        String groundLevel;
+        String seaLevel;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -63,6 +69,8 @@ public class TabFragment1 extends Fragment {
         tvHumidity = (TextView) getActivity().findViewById(R.id.textView4);
         tvWind = (TextView)getActivity(). findViewById(R.id.textView7);
         tvCity = (TextView) getActivity().findViewById(R.id.textView5);
+        tvGroundLevel = (TextView) getActivity().findViewById(R.id.textView10);
+        tvSeaLevel = (TextView) getActivity().findViewById(R.id.textView12);
     }
 
     @Override
@@ -89,6 +97,7 @@ public class TabFragment1 extends Fragment {
             // JSON response will be obtained in this method if there are no network issues
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
+                System.out.println("RESPONSE "+response);
                 progressDialog.dismiss();
                 try {
                     jsonArray = new JSONArray(response.getString("weather"));
@@ -97,8 +106,9 @@ public class TabFragment1 extends Fragment {
                     tvDesription.setText(description);
 
                     icon=jsonObject.getString("icon");
-                    base= "http://openweathermap.org/img/w/"+icon+".png";
+                    base= "http://api.openweathermap.org/img/w/"+icon+".png";
                     new DownloadImageTask(imageView).execute(base);
+
 
                     object = response.getJSONObject("main");
                     tempincelsius= object.getString("temp");
@@ -119,9 +129,16 @@ public class TabFragment1 extends Fragment {
                     jsonObj = new JSONObject(response.getString("sys"));
                     countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
+
+                    jsonObj = new JSONObject(response.getString("main"));
+                    groundLevel = jsonObj.getString("grnd_level");
+                    seaLevel = jsonObj.getString("sea_level");
+                    tvGroundLevel.setText(groundLevel+" hPa");
+                    tvSeaLevel.setText(seaLevel+" hPa");
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
+
 
                 }
             }
