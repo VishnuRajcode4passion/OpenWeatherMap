@@ -1,8 +1,6 @@
 package com.example.machine2.ne;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,10 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 //Main activity class
 public class MainActivity extends AppCompatActivity
@@ -41,12 +35,8 @@ public class MainActivity extends AppCompatActivity
         try {
             // Getting the data from previous activity and showing in list view.
 
-
-
-
             bundle = getIntent().getExtras();
             name = bundle.getString("mylist");
-
             filelist.add(name);
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(arrayAdapter);
@@ -60,7 +50,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String data=(String)parent.getItemAtPosition(position);
-                Intent i = new Intent(MainActivity.this, DetailPage.class);
+              //  Intent i = new Intent(MainActivity.this, DetailPage.class);
+                Intent i = new Intent(MainActivity.this,SlidingMainActivity.class);
                 i.putExtra("data",data);
                 startActivity(i);
             }

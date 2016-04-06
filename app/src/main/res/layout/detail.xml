@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#ef2e03">
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme.AppBarOverlay">
+
+       <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image9">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,9 +73,12 @@
         android:gravity="center"
         android:textSize="33sp"
         android:id="@+id/textView5"
-        android:textColor="#000000"
+
+        android:textColor="#060606"
+        android:layout_marginTop="41dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignParentStart="true" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -135,3 +146,4 @@
 
 
 </RelativeLayout>
+</android.support.design.widget.AppBarLayout>
