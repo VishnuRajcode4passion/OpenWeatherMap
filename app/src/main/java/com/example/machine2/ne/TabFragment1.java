@@ -2,25 +2,25 @@ package com.example.machine2.ne;
 
 
         import android.app.ProgressDialog;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.JsonObjectRequest;
-        import com.android.volley.toolbox.Volley;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TabFragment1 extends Fragment {
 
@@ -30,6 +30,12 @@ public class TabFragment1 extends Fragment {
         TextView tvHumidity;
         TextView tvWind;
         TextView tvCity;
+
+    TextView SeaLevel;
+    TextView GroundLevel;
+
+
+
         ImageView imageView;
         RequestQueue queue;
         ProgressDialog progressDialog;
@@ -52,6 +58,8 @@ public class TabFragment1 extends Fragment {
         String cityname;
         JSONObject jsonObj;
         String countryname;
+    String groundLevel;
+    String seaLevel;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -63,6 +71,19 @@ public class TabFragment1 extends Fragment {
         tvHumidity = (TextView) getActivity().findViewById(R.id.textView4);
         tvWind = (TextView)getActivity(). findViewById(R.id.textView7);
         tvCity = (TextView) getActivity().findViewById(R.id.textView5);
+
+         SeaLevel =(TextView)getActivity().findViewById(R.id.sl_value);
+         GroundLevel =(TextView)getActivity().findViewById(R.id.gl_value);
+
+
+
+        try {
+            // Getting the data from previous activity and showing in list view.
+
+
+        }
+
+        catch (Exception e) { }
     }
 
     @Override
@@ -71,12 +92,15 @@ public class TabFragment1 extends Fragment {
         return inflater.inflate(R.layout.tab_fragment_1, container, false);
     }
 
+
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("LOADING...");
+        progressDialog.setTitle("Loading Weather Details");
         progressDialog.show();
 
         queue = Volley.newRequestQueue(getContext());
@@ -119,6 +143,15 @@ public class TabFragment1 extends Fragment {
                     jsonObj = new JSONObject(response.getString("sys"));
                     countryname = jsonObj.getString("country");
                     tvCity.setText(cityname + "," + countryname);
+
+                    jsonObj = new JSONObject(response.getString("main"));
+                    groundLevel = jsonObj.getString("grnd_level");
+                    seaLevel = jsonObj.getString("sea_level");
+                    GroundLevel.setText(groundLevel + " hPa");
+                    SeaLevel.setText(seaLevel + " hPa");
+
+
+
                 }
                 catch (JSONException e) {
                     e.printStackTrace();

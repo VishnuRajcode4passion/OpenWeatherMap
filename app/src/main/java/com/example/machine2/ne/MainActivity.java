@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
 //Main activity class
 public class MainActivity extends AppCompatActivity
 {
@@ -30,6 +31,12 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
+
+
+
+
+
+
 
         //exception has to be handled when the main activity is first launched
         try {
@@ -58,6 +65,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

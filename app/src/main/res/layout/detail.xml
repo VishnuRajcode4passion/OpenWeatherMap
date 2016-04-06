@@ -21,8 +21,9 @@
         android:textSize="18sp"
         android:id="@+id/textView"
         android:textColor="#000000"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/textView4" />
+        android:layout_marginTop="84dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignStart="@+id/textView6" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,10 +33,10 @@
         android:id="@+id/textView2"
         android:layout_marginLeft="30dp"
         android:gravity="right"
-        android:layout_marginTop="39dp"
         android:textColor="#000000"
-        android:layout_below="@+id/textView"
-        android:layout_alignEnd="@+id/textView6" />
+        android:layout_alignTop="@+id/textView"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_marginStart="29dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,12 +46,10 @@
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:id="@+id/textView3"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView2"
-        android:text="                  " />
+        android:text="                  "
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,12 +59,11 @@
         android:gravity="left"
         android:paddingLeft="20sp"
         android:id="@+id/textView4"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_alignParentRight="true"
+        android:text="                 "
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView6"
-        android:text="                 " />
+        android:layout_marginEnd="36dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -75,9 +73,9 @@
         android:id="@+id/textView5"
 
         android:textColor="#060606"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="53dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/textView8" />
 
 
     <TextView
@@ -88,11 +86,9 @@
         android:layout_marginLeft="30dp"
         android:textSize="18sp"
         android:id="@+id/textView6"
-        android:layout_marginTop="49dp"
         android:textColor="#000000"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/showicon"
-        android:layout_marginStart="39dp" />
+        android:layout_above="@+id/showicon"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,12 +98,9 @@
         android:gravity="left"
         android:paddingLeft="20sp"
         android:id="@+id/textView7"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4"
-        android:layout_alignTop="@+id/textView6"
-        />
+        android:layout_alignTop="@+id/showicon"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignEnd="@+id/textView" />
 
 
     <TextView
@@ -127,14 +120,13 @@
         android:paddingLeft="20sp"
         android:gravity="fill_horizontal"
         android:textColor="#000000"
-        android:textSize="70sp"
+        android:textSize="80sp"
         android:id="@+id/textView9"
         android:textAppearance="?android:textAppearanceLarge"
 
         android:layout_below="@+id/showicon"
-        android:layout_alignEnd="@+id/textView4"
         android:layout_alignParentStart="true"
-        />
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="200dp"
@@ -142,7 +134,7 @@
         android:scaleType="fitCenter"
         android:id="@+id/showicon"
         android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
