@@ -32,8 +32,8 @@ public class TabFragment1 extends Fragment {
         TextView tvHumidity;
         TextView tvWind;
         TextView tvCity;
-    TextView tvGroundLevel;
-    TextView tvSeaLevel;
+        TextView tvGroundLevel;
+        TextView tvSeaLevel;
         ImageView imageView;
         RequestQueue queue;
         ProgressDialog progressDialog;
@@ -97,7 +97,7 @@ public class TabFragment1 extends Fragment {
             // JSON response will be obtained in this method if there are no network issues
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
-                System.out.println("RESPONSE "+response);
+              //  System.out.println("RESPONSE "+response);
                 progressDialog.dismiss();
                 try {
                     jsonArray = new JSONArray(response.getString("weather"));

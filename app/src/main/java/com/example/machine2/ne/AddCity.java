@@ -88,7 +88,6 @@ public class AddCity extends AppCompatActivity
 
                                  jsonArray = new JSONArray(response.getString("list"));
                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                    System.out.println(jsonArray);
                                     jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
                                     arrayList.add(name);
