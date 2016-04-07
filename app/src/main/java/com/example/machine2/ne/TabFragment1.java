@@ -1,7 +1,7 @@
 package com.example.machine2.ne;
 
 
-        import android.app.ProgressDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -58,6 +58,8 @@ public class TabFragment1 extends Fragment {
         String cityname;
         JSONObject jsonObj;
         String countryname;
+
+
     String groundLevel;
     String seaLevel;
 

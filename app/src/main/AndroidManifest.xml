@@ -26,10 +26,6 @@
             android:name=".forcast"
             android:label="@string/title_activity_forcast"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Forecast"
-            android:label="@string/title_activity_forecast"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
