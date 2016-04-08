@@ -65,10 +65,10 @@ public class TabFragment2 extends Fragment {
 
         queue = Volley.newRequestQueue(getContext());
         // Getting the data from previous activity and passing that data into url and displaying all the informations related to that particular data.
-        bundle = getActivity().getIntent().getExtras();
-        data = bundle.getString("data");
-        url = "http://api.openweathermap.org/data/2.5/forecast?q=" + data + "&cnt=7&APPID=45df4fca7d202600be0e657e2d0a9dcd";
-        jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        bundle =  getActivity().getIntent().getExtras();
+        data =bundle.getString("data");
+        url = "http://api.openweathermap.org/data/2.5/forecast?q="+data+"&units=metric&cnt=7&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+        jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
             @Override
             // JSON response will be obtained in this method if there are no network issues
             public void onResponse(JSONObject response) {
