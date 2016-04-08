@@ -58,8 +58,11 @@ public class TabFragment1 extends Fragment
         String winddegree;
         String cityname;
         String countryname;
+        String groundLevel;
+        String seaLevel;
 
-        JsonObjectRequest jsObjRequest;
+
+    JsonObjectRequest jsObjRequest;
         JSONArray jsonArray;
         JSONObject jsonObject;
         JSONObject object;
@@ -69,27 +72,26 @@ public class TabFragment1 extends Fragment
 
 
 
-//    String groundLevel;
-//    String seaLevel;
 
 
 
-        String groundLevel;
-        String seaLevel;
 
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
 
-        tvDesription = (TextView)getActivity().findViewById(R.id.textView8);
+
+
+        tvDesription = (TextView)getActivity().findViewById(R.id.textView_weather_condition);
         imageView=(ImageView)getActivity().findViewById(R.id.showicon);
-        tvTemparature = (TextView) getActivity().findViewById(R.id.textView9);
-        tvPressure = (TextView) getActivity().findViewById(R.id.textView3);
-        tvHumidity = (TextView) getActivity().findViewById(R.id.textView4);
-        tvWind = (TextView)getActivity(). findViewById(R.id.textView7);
-        tvCity = (TextView) getActivity().findViewById(R.id.textView5);
+        tvTemparature = (TextView) getActivity().findViewById(R.id.textView_TemperatureOfCity);
+        tvPressure = (TextView) getActivity().findViewById(R.id.textView_pressureValue);
+        tvHumidity = (TextView) getActivity().findViewById(R.id.textView_humidityValue);
+        tvWind = (TextView)getActivity(). findViewById(R.id.textView_windDescription);
+        tvCity = (TextView) getActivity().findViewById(R.id.textView_Name_of_city);
 
 
          SeaLevel =(TextView)getActivity().findViewById(R.id.sl_value);
@@ -113,6 +115,7 @@ public class TabFragment1 extends Fragment
 
     }
 
+    // Inflates the layout of tab_fragment1
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -126,14 +129,21 @@ public class TabFragment1 extends Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Showing the progress dialog when the device fetching the weather details from the network
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Loading Weather Details");
         progressDialog.show();
 
         queue = Volley.newRequestQueue(getContext());
+
         // Getting the data from previous activity and passing that data into url and displaying all the informations related to that particular data.
+
         bundle =  getActivity().getIntent().getExtras();
         data =bundle.getString("data");
+
+        // Fetching the data using URL
+
         url = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
         jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
             @Override
@@ -143,6 +153,8 @@ public class TabFragment1 extends Fragment
 
        //  System.out.println("RESPONSE "+response);
 
+
+                // Fetching and assigninig data from the URL  to the desired views in the layout
 
                 progressDialog.dismiss();
                 try {
@@ -193,7 +205,9 @@ public class TabFragment1 extends Fragment
             }
         }, new Response.ErrorListener() {
             @Override
+
             //If there is any error in network connection ,then this method will be executed
+
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 Toast.makeText(getContext(), "Network Error ", Toast.LENGTH_LONG).show();
