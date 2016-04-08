@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#2196F3">
 
 
-    
-    <ListView
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView2"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:layout_centerInParent="true"
+        android:text="Tab 3"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
 </RelativeLayout>
