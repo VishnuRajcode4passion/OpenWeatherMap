@@ -6,6 +6,7 @@ package com.example.machine2.ne;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+//add
 
 public class TabFragment3 extends Fragment {
 
