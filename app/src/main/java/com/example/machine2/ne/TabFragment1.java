@@ -21,6 +21,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+<<<<<<< HEAD
+=======
+
+        import java.util.Date;
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 
 public class TabFragment1 extends Fragment {
 
@@ -31,11 +36,19 @@ public class TabFragment1 extends Fragment {
         TextView tvWind;
         TextView tvCity;
 
+<<<<<<< HEAD
 
     TextView SeaLevel;
     TextView GroundLevel;
 
 
+=======
+        TextView tvsealevel;
+        TextView tvgrndlevel;
+
+        TextView tvGroundLevel;
+        TextView tvSeaLevel;
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 
         ImageView imageView;
         RequestQueue queue;
@@ -61,8 +74,16 @@ public class TabFragment1 extends Fragment {
         String countryname;
 
 
+<<<<<<< HEAD
     String groundLevel;
     String seaLevel;
+=======
+
+
+        String groundLevel;
+        String seaLevel;
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -76,6 +97,7 @@ public class TabFragment1 extends Fragment {
         tvWind = (TextView)getActivity(). findViewById(R.id.textView7);
         tvCity = (TextView) getActivity().findViewById(R.id.textView5);
 
+<<<<<<< HEAD
          SeaLevel =(TextView)getActivity().findViewById(R.id.sl_value);
          GroundLevel =(TextView)getActivity().findViewById(R.id.gl_value);
 
@@ -88,6 +110,13 @@ public class TabFragment1 extends Fragment {
         }
 
         catch (Exception e) { }
+=======
+
+
+        tvGroundLevel = (TextView) getActivity().findViewById(R.id.textView10);
+        tvSeaLevel = (TextView) getActivity().findViewById(R.id.textView12);
+
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
     }
 
     @Override
@@ -118,6 +147,11 @@ public class TabFragment1 extends Fragment {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
 
+<<<<<<< HEAD
+=======
+              //  System.out.println("RESPONSE "+response);
+
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
                 progressDialog.dismiss();
                 try {
                     jsonArray = new JSONArray(response.getString("weather"));
@@ -133,6 +167,7 @@ public class TabFragment1 extends Fragment {
                     tempincelsius= object.getString("temp");
                     tvTemparature.setText(tempincelsius+ " °C");
 
+
                     pressure = object.getString("pressure");
                     humidity = object.getString("humidity");
 
@@ -147,6 +182,7 @@ public class TabFragment1 extends Fragment {
                     cityname = response.getString("name");
                     jsonObj = new JSONObject(response.getString("sys"));
                     countryname = jsonObj.getString("country");
+
                     tvCity.setText(cityname + "," + countryname);
 
                     jsonObj = new JSONObject(response.getString("main"));

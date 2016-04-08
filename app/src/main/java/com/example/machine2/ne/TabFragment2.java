@@ -1,6 +1,10 @@
 package com.example.machine2.ne;
 
+<<<<<<< HEAD
         import android.app.ProgressDialog;
+=======
+import android.app.ProgressDialog;
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,12 +26,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+<<<<<<< HEAD
 import java.io.InputStream;
 import java.util.ArrayList;
+=======
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 import java.util.concurrent.ExecutionException;
 
 
 public class TabFragment2 extends Fragment {
+
 
     RequestQueue queue;
     ProgressDialog progressDialog;
@@ -38,19 +46,23 @@ public class TabFragment2 extends Fragment {
     ImageView imageView;
     ListView lv;
     String time[] = new String[7];
-    String description[] =new String[7];
+    String description[] = new String[7];
     String temperature[] = new String[7];
     Bitmap image[] = new Bitmap[7];
+<<<<<<< HEAD
 
     String base[] =new String[7];
+=======
+    String base[] = new String[7];
+>>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
     String icon[] = new String[7];
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        imageView=(ImageView)getActivity().findViewById(R.id.imageView2);
-        lv=(ListView) getActivity().findViewById(R.id.listView2);
+        imageView = (ImageView) getActivity().findViewById(R.id.imageView2);
+        lv = (ListView) getActivity().findViewById(R.id.listView2);
 
     }
 
@@ -58,6 +70,7 @@ public class TabFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.tab_fragment_2, container, false);
     }
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -79,16 +92,15 @@ public class TabFragment2 extends Fragment {
                 progressDialog.dismiss();
                 try {
                     JSONArray jsonArray = response.getJSONArray("list");
-                    System.out.println("JSON ARRAY "+jsonArray);
+                    System.out.println("JSON ARRAY " + jsonArray);
 
-                    for(int i=0;i<jsonArray.length();i++)
-                    {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                         time[i] = jsonObject.getString("dt_txt");
+                        time[i] = jsonObject.getString("dt_txt");
                         JSONArray jsonArray2 = jsonObject.getJSONArray("weather");
                         JSONObject jsonObject2 = jsonArray2.getJSONObject(0);
                         icon[i] = jsonObject2.getString("icon");
-                        base[i]= "http://api.openweathermap.org/img/w/"+icon[i]+".png";
+                        base[i] = "http://api.openweathermap.org/img/w/" + icon[i] + ".png";
                         LoadImageTask loadImageTask = new LoadImageTask();
 
                         try {
@@ -102,12 +114,12 @@ public class TabFragment2 extends Fragment {
                         description[i] = jsonObject2.getString("description");
                         JSONObject jsonObject3 = jsonObject.getJSONObject("main");
                         temperature[i] = jsonObject3.getString("temp");
-                        System.out.println("TIME "+time[i]);
-                        System.out.println("DESCRIPTION "+description[i]);
+                        System.out.println("TIME " + time[i]);
+                        System.out.println("DESCRIPTION " + description[i]);
                         System.out.println("TEMPERATURE " + temperature[i]);
-                        System.out.println("IMAGE "+image[i]);
+                        System.out.println("IMAGE " + image[i]);
                     }
-                    lv.setAdapter(new CustomAdapter(getContext(),time,description,temperature,image));
+                    lv.setAdapter(new CustomAdapter(getContext(), time, description, temperature, image));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -124,6 +136,6 @@ public class TabFragment2 extends Fragment {
         queue.add(jsObjRequest);
 
     }
-
-
 }
+
+
