@@ -1,10 +1,6 @@
 package com.example.machine2.ne;
 
-<<<<<<< HEAD
-        import android.app.ProgressDialog;
-=======
 import android.app.ProgressDialog;
->>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,11 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-<<<<<<< HEAD
-import java.io.InputStream;
-import java.util.ArrayList;
-=======
->>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 import java.util.concurrent.ExecutionException;
 
 
@@ -49,12 +40,9 @@ public class TabFragment2 extends Fragment {
     String description[] = new String[7];
     String temperature[] = new String[7];
     Bitmap image[] = new Bitmap[7];
-<<<<<<< HEAD
 
-    String base[] =new String[7];
-=======
     String base[] = new String[7];
->>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
+
     String icon[] = new String[7];
 
 

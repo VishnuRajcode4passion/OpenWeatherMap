@@ -1,9 +1,6 @@
 package com.example.machine2.ne;
 
-<<<<<<< HEAD
 import android.app.ActionBar;
-=======
->>>>>>> 55b33c9cc57f11d38219e61b386eddaa1282e95f
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+
 
 /**
  * Created by machine2 on 30/03/16.
