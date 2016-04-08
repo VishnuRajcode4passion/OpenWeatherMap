@@ -1,26 +1,26 @@
 package com.example.machine2.ne;
 
 
-        import android.app.ProgressDialog;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.JsonObjectRequest;
-        import com.android.volley.toolbox.Volley;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TabFragment1 extends Fragment {
 
@@ -30,6 +30,8 @@ public class TabFragment1 extends Fragment {
         TextView tvHumidity;
         TextView tvWind;
         TextView tvCity;
+        TextView tvsealevel;
+        TextView tvgrndlevel;
         ImageView imageView;
         RequestQueue queue;
         ProgressDialog progressDialog;
@@ -52,6 +54,9 @@ public class TabFragment1 extends Fragment {
         String cityname;
         JSONObject jsonObj;
         String countryname;
+        String sealevel;
+        String grndlevel;
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -63,6 +68,9 @@ public class TabFragment1 extends Fragment {
         tvHumidity = (TextView) getActivity().findViewById(R.id.textView4);
         tvWind = (TextView)getActivity(). findViewById(R.id.textView7);
         tvCity = (TextView) getActivity().findViewById(R.id.textView5);
+        tvsealevel=(TextView) getActivity().findViewById(R.id.tvsunrise);
+        tvgrndlevel=(TextView) getActivity().findViewById(R.id.tvsunset);
+
     }
 
     @Override
@@ -89,6 +97,7 @@ public class TabFragment1 extends Fragment {
             // JSON response will be obtained in this method if there are no network issues
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
+                System.out.println("response"+response);
                 progressDialog.dismiss();
                 try {
                     jsonArray = new JSONArray(response.getString("weather"));
@@ -103,6 +112,10 @@ public class TabFragment1 extends Fragment {
                     object = response.getJSONObject("main");
                     tempincelsius= object.getString("temp");
                     tvTemparature.setText(tempincelsius+ " °C");
+                    sealevel=object.getString("sea_level");
+                    grndlevel=object.getString("grnd_level");
+                    tvsealevel.setText(sealevel);
+                    tvgrndlevel.setText(grndlevel);
 
                     pressure = object.getString("pressure");
                     humidity = object.getString("humidity");
@@ -118,6 +131,7 @@ public class TabFragment1 extends Fragment {
                     cityname = response.getString("name");
                     jsonObj = new JSONObject(response.getString("sys"));
                     countryname = jsonObj.getString("country");
+
                     tvCity.setText(cityname + "," + countryname);
                 }
                 catch (JSONException e) {
