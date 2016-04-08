@@ -10,10 +10,10 @@
         android:id="@+id/card_view"
 
         android:layout_width="match_parent"
-        android:layout_height="261dp"
-        android:layout_margin="5dp"
+ android:layout_height="250dp"
+        android:layout_margin="2dp"
+
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="5dp"
         card_view:contentPadding="20dp"
         android:minHeight="50dp">
 
@@ -25,7 +25,6 @@
             android:layout_alignParentEnd="true"
             android:background="#FFFFFF"
           >
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,10 +96,11 @@
         android:id="@+id/card_view2"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        card_view:cardCornerRadius="2dp"
-        card_view:contentPadding="10dp"
-        android:minHeight="100dp">
+
+        android:layout_margin="2dp"
+        card_view:cardCornerRadius="16dp"
+        android:minHeight="300dp">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -117,9 +117,11 @@
             android:textSize="18sp"
             android:textColor="#8b7979"
             android:id="@+id/textView"
-            android:layout_above="@+id/textView3"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp" />
+
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

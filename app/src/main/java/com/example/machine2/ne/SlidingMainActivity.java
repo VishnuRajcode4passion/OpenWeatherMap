@@ -21,8 +21,8 @@ public class SlidingMainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Current"));
-        tabLayout.addTab(tabLayout.newTab().setText("Forecast"));
+        tabLayout.addTab(tabLayout.newTab().setText("CURRENT"));
+        tabLayout.addTab(tabLayout.newTab().setText("FORECAST"));
         //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

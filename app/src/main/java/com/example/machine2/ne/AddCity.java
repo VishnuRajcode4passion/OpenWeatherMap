@@ -79,8 +79,7 @@ public class AddCity extends AppCompatActivity
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
-        //addCity = (TextView)findViewById(R.id.textView11);
-        //addCity.setVisibility(View.INVISIBLE);
+
 
         //Onclick  of  image button
         imageButton.setOnClickListener(new View.OnClickListener()
@@ -114,6 +113,8 @@ public class AddCity extends AppCompatActivity
                                     arrayList.add(name);
                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                     listView.setAdapter(adapter);
+
+                                    adapter.notifyDataSetChanged();
 
                                 }
 

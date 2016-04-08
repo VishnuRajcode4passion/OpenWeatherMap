@@ -41,13 +41,9 @@ public class TabFragment2 extends Fragment {
     String description[] =new String[7];
     String temperature[] = new String[7];
     Bitmap image[] = new Bitmap[7];
-    ArrayList<String> arrayList = new ArrayList<String>();
-    String urlOfImage[]=new  String[7];
-    InputStream inputStream;
-    Bitmap bitmapimage;
+
     String base[] =new String[7];
     String icon[] = new String[7];
-
 
 
     @Override
@@ -73,7 +69,7 @@ public class TabFragment2 extends Fragment {
         // Getting the data from previous activity and passing that data into url and displaying all the informations related to that particular data.
         bundle =  getActivity().getIntent().getExtras();
         data =bundle.getString("data");
-        url = "http://api.openweathermap.org/data/2.5/forecast?q="+data+"&cnt=7&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+        url = "http://api.openweathermap.org/data/2.5/forecast?q="+data+"&units=metric&cnt=7&APPID=45df4fca7d202600be0e657e2d0a9dcd";
         jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
             @Override
             // JSON response will be obtained in this method if there are no network issues
@@ -84,6 +80,7 @@ public class TabFragment2 extends Fragment {
                 try {
                     JSONArray jsonArray = response.getJSONArray("list");
                     System.out.println("JSON ARRAY "+jsonArray);
+
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
