@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.machine2.ne">
      <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
@@ -18,9 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailPage"
-          ></activity>
+          />
         <activity android:name=".AddCity"
-           ></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <activity android:name=".SlidingMainActivity"></activity>
     </application>
 

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -59,14 +61,10 @@ public class AddCity extends AppCompatActivity
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
-        addCity = (TextView)findViewById(R.id.textView11);
-        addCity.setVisibility(View.INVISIBLE);
-
         //Onclick  of  image button
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCity.setVisibility(View.VISIBLE);
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString().trim();
@@ -93,6 +91,7 @@ public class AddCity extends AppCompatActivity
                                     arrayList.add(name);
                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                     listView.setAdapter(adapter);
+                                    adapter.notifyDataSetChanged();
                                 }
 
                             } catch (JSONException e) {
