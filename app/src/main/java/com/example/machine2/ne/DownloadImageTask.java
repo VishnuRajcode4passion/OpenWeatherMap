@@ -8,17 +8,20 @@ import android.widget.ImageView;
 import java.io.InputStream;
 import java.net.URL;
 
+// Class for fetching the icon / image corresponding to the corrent weather situation
 
-public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
+public class DownloadImageTask extends AsyncTask<String,Void,Bitmap>
+{
+    // Declaration of variables
 
-    ImageView imageView;
+    ImageView WeatherIcon;
     String urlOfImage;
     Bitmap image;
     InputStream inputStream;
 
     public DownloadImageTask(ImageView imageView) {
 
-        this.imageView = imageView;
+        this.WeatherIcon = imageView;
     }
     // fetching image from url
     protected Bitmap doInBackground(String...urls){
@@ -36,7 +39,7 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
     //set image on bitmap
     protected void onPostExecute(Bitmap result){
 
-        imageView.setImageBitmap(result);
+        WeatherIcon.setImageBitmap(result);
 
   }
  }

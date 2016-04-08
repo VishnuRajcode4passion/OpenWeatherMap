@@ -23,7 +23,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class TabFragment1 extends Fragment {
+public class TabFragment1 extends Fragment
+{
+
+    // Variables are declared
 
         TextView tvDesription;
         TextView tvTemparature;
@@ -31,43 +34,38 @@ public class TabFragment1 extends Fragment {
         TextView tvHumidity;
         TextView tvWind;
         TextView tvCity;
-
-
-
-    TextView SeaLevel;
-    TextView GroundLevel;
-
-
-
-        TextView tvsealevel;
-        TextView tvgrndlevel;
-
-        TextView tvGroundLevel;
-        TextView tvSeaLevel;
+        TextView SeaLevel;
+        TextView GroundLevel;
 
 
         ImageView imageView;
+
         RequestQueue queue;
+
         ProgressDialog progressDialog;
+
         Bundle bundle;
+
         String data;
         String url;
-        JsonObjectRequest jsObjRequest;
-        JSONArray jsonArray;
-        JSONObject jsonObject;
         String description;
         String icon;
         String base;
-        JSONObject object;
         String tempincelsius;
         String pressure;
         String humidity;
         String windspeed;
-        JSONObject jsonObject1;
         String winddegree;
         String cityname;
-        JSONObject jsonObj;
         String countryname;
+
+        JsonObjectRequest jsObjRequest;
+        JSONArray jsonArray;
+        JSONObject jsonObject;
+        JSONObject object;
+        JSONObject jsonObject1;
+        JSONObject jsonObj;
+
 
 
 

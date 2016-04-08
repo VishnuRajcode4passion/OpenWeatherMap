@@ -24,8 +24,12 @@
         <activity android:name=".DetailPage"
           />
         <activity android:name=".AddCity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Search"/>
+            <activity android:name=".TabFragment1"
+                android:label="Weather Details"
             ></activity>
+        <activity android:name=".TabFragment2"
+            android:label="Forcast Weather"/>
         <activity android:name=".SlidingMainActivity"></activity>
 
     </application>

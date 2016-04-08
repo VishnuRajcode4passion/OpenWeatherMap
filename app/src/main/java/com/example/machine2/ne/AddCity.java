@@ -1,10 +1,8 @@
 package com.example.machine2.ne;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,6 +41,7 @@ import java.util.ArrayList;
 public class AddCity extends AppCompatActivity
 
 {
+    //Variables initilized
 
     TextView addCity;
 
@@ -50,27 +49,25 @@ public class AddCity extends AppCompatActivity
 
     ListView listView;
 
-    ImageButton imageButton;
+    ImageButton ImageButton_search;
 
     ArrayList<String> arrayList = new ArrayList<>();
 
     String name;
-
     String url;
 
     JSONArray jsonArray;
-
     JsonObjectRequest jsObjRequest;
-
     JSONObject jsonObject;
 
     ArrayAdapter<String> adapter;
 
     AlertDialog.Builder alertDialogBuilder;
+    AlertDialog alertDialog;
 
     Intent intent;
 
-    AlertDialog alertDialog;
+
 
 
     protected void onCreate(Bundle savedInstanceState)
@@ -83,24 +80,29 @@ public class AddCity extends AppCompatActivity
 
 
         final RequestQueue queue = Volley.newRequestQueue(this);
-        imageButton = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton_search = (ImageButton) findViewById(R.id.imageButton_search);
         listView = (ListView) findViewById(R.id.cityList);
 
 
         //Onclick  of  image button
-        imageButton.setOnClickListener(new View.OnClickListener()
+        ImageButton_search.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 arrayList.clear();
-                search = (EditText) findViewById(R.id.editText);
+                search = (EditText) findViewById(R.id.editText_search);
+
 
 
                 String list = search.getText().toString().trim();
-                if (list.isEmpty() || list.length() == 0 || list.equals("") || list == null) {
+                if (list.isEmpty() || list.length() == 0 || list.equals("") || list == null)
+                {
                     Toast.makeText(getApplication(), "Enter a city", Toast.LENGTH_LONG).show();
-                } else {
+                }
+                else
+                {
                     //fetch data from the internet with selected city
                     url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
                     //Request for the json objects
@@ -112,8 +114,10 @@ public class AddCity extends AppCompatActivity
                             try {
 
 
+
                                 jsonArray = new JSONArray(response.getString("list"));
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++)
+                                {
                                     jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
                                     arrayList.add(name);
@@ -176,14 +180,7 @@ public class AddCity extends AppCompatActivity
 
         }
 
-    private void actionBarSetup()
-    {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            ActionBar ab = getActionBar();
-            ab.setTitle("Search");
-            //ab.setSubtitle("sub-title");
-        }
-    }
+
     }
 
 

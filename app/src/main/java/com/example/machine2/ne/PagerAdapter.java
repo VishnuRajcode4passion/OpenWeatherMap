@@ -1,11 +1,14 @@
 package com.example.machine2.ne;
 
 
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+// Class for Tabs
+
+public class PagerAdapter extends FragmentStatePagerAdapter
+{
     int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
@@ -13,6 +16,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         this.mNumOfTabs = NumOfTabs;
     }
 
+    // Mehod for load tabs when clicks
     @Override
     public Fragment getItem(int position) {
 
@@ -23,9 +27,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 TabFragment2 tab2 = new TabFragment2();
                 return tab2;
-            case 2:
-                TabFragment3 tab3 = new TabFragment3();
-                return tab3;
             default:
                 return null;
         }

@@ -63,7 +63,7 @@ public class TabFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("LOADING...");
+        progressDialog.setTitle("Loading Weather Details");
         progressDialog.show();
 
         queue = Volley.newRequestQueue(getContext());
