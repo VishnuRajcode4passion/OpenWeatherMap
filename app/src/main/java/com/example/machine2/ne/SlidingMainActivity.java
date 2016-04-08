@@ -22,9 +22,9 @@ public class SlidingMainActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("TODAY"));
-        tabLayout.addTab(tabLayout.newTab().setText("TODAY'S FORECAST"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("CURRENT"));
+        tabLayout.addTab(tabLayout.newTab().setText("FORECAST"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
