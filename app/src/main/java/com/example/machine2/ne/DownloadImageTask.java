@@ -35,6 +35,8 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
 }
     //set image on bitmap
     protected void onPostExecute(Bitmap result){
-    imageView.setImageBitmap(result);
+
+        imageView.setImageBitmap(result);
+
   }
  }
