@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity
     Bundle bundle;
     String name;
     ArrayAdapter<String> arrayAdapter;
+
 //    String filename = "mySharedString";
+
 //    SharedPreferences someData;
 
     @Override

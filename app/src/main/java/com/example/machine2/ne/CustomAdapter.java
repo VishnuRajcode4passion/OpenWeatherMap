@@ -17,6 +17,7 @@ public class CustomAdapter extends BaseAdapter{
     String description[];
     String temperature[];
     Bitmap image[];
+
   //  int [] imageId;
     private static LayoutInflater inflater=null;
     public CustomAdapter(Context context, String[] time, String[] description, String[] temperature, Bitmap[] image) {

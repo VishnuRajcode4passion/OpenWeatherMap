@@ -19,6 +19,7 @@ public class SlidingMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sliding_activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 //        setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);

@@ -38,6 +38,7 @@ import java.util.ArrayList;
  */
 public class AddCity extends AppCompatActivity
 {
+
   //variables declaration
     TextView addCity;
     EditText search;

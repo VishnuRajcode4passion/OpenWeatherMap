@@ -20,6 +20,7 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
 
         this.imageView = imageView;
     }
+
     // fetching image from url
     protected Bitmap doInBackground(String...urls){
         urlOfImage = urls[0];

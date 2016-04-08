@@ -47,6 +47,8 @@ public class TabFragment2 extends Fragment {
     String base[] =new String[7];
     String icon[] = new String[7];
 
+
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
