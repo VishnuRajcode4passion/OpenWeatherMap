@@ -72,7 +72,7 @@ public class TabFragment1 extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        
+
         tvDesription = (TextView)getActivity().findViewById(R.id.textView8);
         imageView=(ImageView)getActivity().findViewById(R.id.showicon);
         tvTemparature = (TextView) getActivity().findViewById(R.id.textView9);
