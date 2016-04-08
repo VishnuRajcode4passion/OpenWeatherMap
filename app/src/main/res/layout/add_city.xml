@@ -4,21 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+    android:background="#ffffff">
 
-        app:popupTheme="@style/AppTheme.PopupOverlay" >
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editText_search"
         android:hint="Enter a city"
-        android:textColorHint="#f2f3f5"
+
+        android:textColorHint="#a18982"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:layout_alignBottom="@+id/imageButton"
@@ -32,18 +27,17 @@
             android:src="@drawable/find"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButton_search"
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignEnd="@+id/cityList" />
 
-    </android.support.v7.widget.Toolbar>
 
     <ListView android:id="@+id/cityList"
         android:dividerHeight="1dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"/>
-
+        android:layout_below="@id/editText_search"/>
 </RelativeLayout>

@@ -40,8 +40,11 @@ public class TabFragment2 extends Fragment {
     String description[] = new String[7];
     String temperature[] = new String[7];
     Bitmap image[] = new Bitmap[7];
+
     String base[] = new String[7];
+
     String icon[] = new String[7];
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class TabFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("LOADING...");
+        progressDialog.setTitle("Loading Weather Details");
         progressDialog.show();
 
         queue = Volley.newRequestQueue(getContext());

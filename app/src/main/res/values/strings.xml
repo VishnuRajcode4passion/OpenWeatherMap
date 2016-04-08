@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Weather 365°C</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_forcast">forcast</string>
+    <string name="title_activity_forecast">Forecast</string>
+
+
 </resources>
