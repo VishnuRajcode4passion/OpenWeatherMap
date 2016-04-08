@@ -1,6 +1,5 @@
 package com.example.machine2.ne;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -63,14 +62,12 @@ public class AddCity extends AppCompatActivity
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
-        addCity = (TextView)findViewById(R.id.textView11);
-        addCity.setVisibility(View.INVISIBLE);
+
 
         //Onclick  of  image button
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCity.setVisibility(View.VISIBLE);
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString().trim();

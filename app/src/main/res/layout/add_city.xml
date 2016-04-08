@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2196F3">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,59 +13,8 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
     </android.support.v7.widget.Toolbar>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insert the city name"
-        android:textSize="30sp"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/textView10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:hint="Enter a city"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:layout_alignBottom="@+id/imageButton"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_toLeftOf="@+id/imageButton"
-        android:layout_toStartOf="@+id/imageButton">
-        <requestFocus />
-    </EditText>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/find"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:id="@+id/imageButton"
-        android:layout_below="@+id/textView10"
-        android:layout_alignRight="@+id/cityList"
-        android:layout_alignEnd="@+id/cityList" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Results"
-        android:layout_marginLeft="10dp"
-        android:textSize="30sp"
-        android:id="@+id/textView11"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
     <ListView android:id="@+id/cityList"
         android:dividerHeight="1dp"
 
@@ -76,7 +22,29 @@
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView11"
-
-        android:layout_marginTop="3dp"/>
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="3dp"
+         />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/find"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/view"
+        android:layout_alignEnd="@+id/cityList" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="Enter a city"
+        android:textColor="#fcf9f9"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignStart="@+id/cityList"
+        android:layout_toStartOf="@+id/imageButton">
+        <requestFocus />
+    </EditText>
 </RelativeLayout>

@@ -20,7 +20,8 @@
         <activity android:name=".DetailPage"
           ></activity>
         <activity android:name=".AddCity"
-           ></activity>
+        android:theme="@style/AppTheme.NoActionBar">
+           </activity>
         <activity android:name=".SlidingMainActivity"></activity>
     </application>
 
