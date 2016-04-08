@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailPage" />
-        <activity android:name=".AddCity" />
+        <activity android:name=".AddCity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SlidingMainActivity" />
         <activity
             android:name=".forcast"

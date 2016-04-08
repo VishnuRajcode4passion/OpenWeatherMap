@@ -7,10 +7,5 @@
         android:orderInCategory="1"
         android:title="Add New City"
         app:showAsAction="never" />
-    <item android:id="@+id/airport_menuRefresh"
-        android:icon="@drawable/ic_icon_refresh"
-        android:title="@string/menuitem_refresh"
-        android:alphabeticShortcut="r"
-        android:orderInCategory="1"
-        android:showAsAction="always" />
+
 </menu>

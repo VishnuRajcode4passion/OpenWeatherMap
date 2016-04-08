@@ -1,9 +1,10 @@
 package com.example.machine2.ne;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -71,36 +72,34 @@ public class AddCity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city);
 
+       // actionBarSetup();
+
 
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
-        addCity = (TextView)findViewById(R.id.textView11);
-        addCity.setVisibility(View.INVISIBLE);
+        //addCity = (TextView)findViewById(R.id.textView11);
+        //addCity.setVisibility(View.INVISIBLE);
 
         //Onclick  of  image button
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        imageButton.setOnClickListener(new View.OnClickListener()
+        {
 
             @Override
-            public void onClick(View v)
-            {
-                addCity.setVisibility(View.VISIBLE);
+            public void onClick(View v) {
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
 
 
                 String list = search.getText().toString().trim();
-                if(list.isEmpty() || list.length() == 0 || list.equals("") || list== null)
-                {
+                if (list.isEmpty() || list.length() == 0 || list.equals("") || list == null) {
                     Toast.makeText(getApplication(), "Enter a city", Toast.LENGTH_LONG).show();
-                }
-
-                 else {
-                         //fetch data from the internet with selected city
-                     url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+                } else {
+                    //fetch data from the internet with selected city
+                    url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
                     //Request for the json objects
-                     jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             // TODO Auto-generated method stub
@@ -108,9 +107,8 @@ public class AddCity extends AppCompatActivity
                             try {
 
 
-                                 jsonArray = new JSONArray(response.getString("list"));
+                                jsonArray = new JSONArray(response.getString("list"));
                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                    System.out.println(jsonArray);
                                     jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
                                     arrayList.add(name);
@@ -170,6 +168,15 @@ public class AddCity extends AppCompatActivity
         });
 
         }
+
+    private void actionBarSetup()
+    {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            ActionBar ab = getActionBar();
+            ab.setTitle("Search");
+            //ab.setSubtitle("sub-title");
+        }
+    }
     }
 
 
