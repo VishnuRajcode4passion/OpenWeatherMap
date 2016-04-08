@@ -66,7 +66,7 @@ public class CustomAdapter extends BaseAdapter{
         holder.tvDescription=(TextView) rowView.findViewById(R.id.textView2);
         holder.tvTemperature=(TextView) rowView.findViewById(R.id.textView14);
         holder.tvTime.setText(time[position]);
-        holder.tvTemperature.setText(temperature[position]);
+        holder.tvTemperature.setText(temperature[position]+ " °C");
         holder.tvDescription.setText(description[position]);
         holder.img.setImageBitmap(image[position]);
 

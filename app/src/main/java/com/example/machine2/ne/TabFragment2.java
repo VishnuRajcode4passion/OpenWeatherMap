@@ -41,18 +41,12 @@ public class TabFragment2 extends Fragment {
     JsonObjectRequest jsObjRequest;
     ImageView imageView;
     ListView lv;
-    String time[] = new String[10];
-    String description[] =new String[10];
-    String temperature[] = new String[10];
-    Bitmap image[] = new Bitmap[10];
-    ArrayList<String> arrayList = new ArrayList<String>();
-    String urlOfImage[]=new  String[10];
-    InputStream inputStream;
-    Bitmap bitmapimage;
-    String base[] =new String[10];
-    String icon[] = new String[10];
-
-
+    String time[] = new String[7];
+    String description[] =new String[7];
+    String temperature[] = new String[7];
+    Bitmap image[] = new Bitmap[7];
+    String base[] =new String[7];
+    String icon[] = new String[7];
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
