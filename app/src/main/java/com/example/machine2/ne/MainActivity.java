@@ -1,6 +1,7 @@
 package com.example.machine2.ne;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity
     Bundle bundle;
     String name;
     ArrayAdapter<String> arrayAdapter;
+//    String filename = "mySharedString";
+//    SharedPreferences someData;
 
 
     @Override
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
+//        someData = getSharedPreferences(filename,0);
 
 
 
@@ -44,14 +48,23 @@ public class MainActivity extends AppCompatActivity
 
             bundle = getIntent().getExtras();
             name = bundle.getString("mylist");
+//            SharedPreferences.Editor  editor = someData.edit();
+//            editor.putString("sharedString", name);
+//            editor.commit();
             filelist.add(name);
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(arrayAdapter);
         }
 
         catch (Exception e) { }
-
-
+//        try {
+//            someData = getSharedPreferences(filename, 0);
+//            String dataReturned = someData.getString("sharedString", "couldn't load data");
+//            filelist.add(dataReturned);
+//            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
+//            listView.setAdapter(arrayAdapter);
+//        }
+//        catch (Exception e) {}
         //when clicking the particular item in listview ,pass the data to detailPage activity.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
