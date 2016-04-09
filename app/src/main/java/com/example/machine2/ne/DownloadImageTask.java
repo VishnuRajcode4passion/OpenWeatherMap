@@ -17,7 +17,6 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
     InputStream inputStream;
 
     public DownloadImageTask(ImageView imageView) {
-
         this.imageView = imageView;
     }
 

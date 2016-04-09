@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class AddCity extends AppCompatActivity
 {
 
-  //variables declaration
+   //variables declaration
     TextView addCity;
     EditText search;
     ListView listView;

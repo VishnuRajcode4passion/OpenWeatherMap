@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CustomAdapter extends BaseAdapter{
+
     Context context;
     String time[];
     String description[];

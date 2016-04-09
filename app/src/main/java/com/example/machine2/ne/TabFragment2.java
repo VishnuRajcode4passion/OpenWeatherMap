@@ -87,7 +87,7 @@ public class TabFragment2 extends Fragment {
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                         time[i] = jsonObject.getString("dt_txt");
+                        time[i] = jsonObject.getString("dt_txt");
                         JSONArray jsonArray2 = jsonObject.getJSONArray("weather");
                         JSONObject jsonObject2 = jsonArray2.getJSONObject(0);
                         icon[i] = jsonObject2.getString("icon");

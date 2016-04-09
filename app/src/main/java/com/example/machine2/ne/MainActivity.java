@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity
     String name;
     ArrayAdapter<String> arrayAdapter;
 
-//    String filename = "mySharedString";
+//   String filename = "mySharedString";
 
 //    SharedPreferences someData;
 
