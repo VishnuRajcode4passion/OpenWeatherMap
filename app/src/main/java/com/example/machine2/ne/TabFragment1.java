@@ -22,8 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-        import java.util.Date;
-
 public class TabFragment1 extends Fragment {
 
         TextView tvDesription;

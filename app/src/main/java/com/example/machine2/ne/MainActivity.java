@@ -1,5 +1,6 @@
 package com.example.machine2.ne;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,10 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
 //Main activity class
 public class MainActivity extends AppCompatActivity
 {
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> filelist = new ArrayList<String>();
     Bundle bundle;
     String name;
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedpreferences;
     ArrayAdapter<String> arrayAdapter;
 //    String filename = "mySharedString";
 //    SharedPreferences someData;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView=(ListView)findViewById(R.id.listView);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //        someData = getSharedPreferences(filename,0);
 
         //exception has to be handled when the main activity is first launched
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity
             filelist.add(name);
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(arrayAdapter);
+
         }
 
         catch (Exception e) { }
@@ -60,8 +65,12 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("Name",name);
+                String strSavedMem1 = sharedpreferences.getString("name", "");
+                String[] values = new String[] { strSavedMem1};
+                arrayAdapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_list_item_1, values);
                 String data=(String)parent.getItemAtPosition(position);
-              //  Intent i = new Intent(MainActivity.this, DetailPage.class);
                 Intent i = new Intent(MainActivity.this,SlidingMainActivity.class);
                 i.putExtra("data",data);
                 startActivity(i);

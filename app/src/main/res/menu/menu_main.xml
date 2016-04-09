@@ -5,6 +5,12 @@
     <item
         android:id="@+id/add"
         android:orderInCategory="1"
+        android:icon="@drawable/file_add"
         android:title="ADD"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_favorite_black_48dp"
+        android:title="favorite"
+        app:showAsAction="ifRoom"/>
 </menu>

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,11 +45,11 @@ public class AddCity extends AppCompatActivity
     ListView listView;
     ImageButton imageButton;
     ArrayList<String> arrayList = new ArrayList<>();
-    String name;
+    String name,description;
     String url;
-    JSONArray jsonArray;
+    JSONArray jsonArray,jsonArray2;
     JsonObjectRequest jsObjRequest;
-    JSONObject jsonObject;
+    JSONObject jsonObject,jsonObject2;
     ArrayAdapter<String> adapter;
     AlertDialog.Builder alertDialogBuilder;
     Intent intent;
@@ -91,6 +89,7 @@ public class AddCity extends AppCompatActivity
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
+                                    System.out.println("name"+name);
                                     arrayList.add(name);
                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                     listView.setAdapter(adapter);
@@ -128,6 +127,7 @@ public class AddCity extends AppCompatActivity
                         String name = (String) parent.getItemAtPosition(position);
                         intent = new Intent(AddCity.this, MainActivity.class);
                         intent.putExtra("mylist", name);
+                        intent.putExtra("desc",description);
                         startActivity(intent);
                     }
                 });
