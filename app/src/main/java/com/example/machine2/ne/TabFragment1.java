@@ -156,7 +156,6 @@ public class TabFragment1 extends Fragment {
                 catch (JSONException e) {
                     e.printStackTrace();
 
-
                 }
             }
         }, new Response.ErrorListener() {

@@ -1,6 +1,7 @@
 package com.example.machine2.ne;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,8 @@ import java.util.ArrayList;
 public class AddCity extends AppCompatActivity
 
 {
+
+
   //variables declaration
     TextView addCity;
     EditText search;
@@ -54,7 +57,7 @@ public class AddCity extends AppCompatActivity
     AlertDialog.Builder alertDialogBuilder;
     Intent intent;
     AlertDialog alertDialog;
-
+    String name1;
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -124,10 +127,11 @@ public class AddCity extends AppCompatActivity
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        String name = (String) parent.getItemAtPosition(position);
+                         name1 = (String) parent.getItemAtPosition(position);
                         intent = new Intent(AddCity.this, MainActivity.class);
-                        intent.putExtra("mylist", name);
+                        intent.putExtra("mylist", name1);
                         intent.putExtra("desc",description);
+                        savedata();
                         startActivity(intent);
                     }
                 });
@@ -141,11 +145,41 @@ public class AddCity extends AppCompatActivity
 
                  alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-
             }
         });
-
         }
+    public void savedata()
+    {
+        boolean diditwork=true;
+        try {
+
+            Operations entry = new Operations(getApplication());
+            entry.open();
+            entry.creatEntry(name1);
+            entry.close();
+        }catch(Exception e)
+        {
+            diditwork=false;
+            String error=e.toString();
+            Dialog d=new Dialog((this));
+            d.setTitle("no");
+            TextView viw=new TextView(this);
+            viw.setText("error");
+            d.setContentView(viw);
+            d.show();
+        }finally {
+            if(diditwork)
+            {
+                Dialog d=new Dialog(this);
+                this.setTitle("yes");
+                TextView viw=new TextView(this);
+                viw.setText("success");
+                d.setContentView(viw);
+                d.show();
+            }
+          }
+
+       }
     }
 
 

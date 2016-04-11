@@ -13,18 +13,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Main activity class
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> filelist = new ArrayList<String>();
+    ArrayList<String> filelist2 = new ArrayList<String>();
+    ArrayList<String> filelist3 = new ArrayList<String>();
     Bundle bundle;
     String name;
+    String data;
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<String> arrayAdapter1;
 //    String filename = "mySharedString";
 //    SharedPreferences someData;
 
@@ -34,10 +38,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        listView=(ListView)findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //        someData = getSharedPreferences(filename,0);
-
         //exception has to be handled when the main activity is first launched
         try {
             // Getting the data from previous activity and showing in list view.
@@ -50,9 +53,9 @@ public class MainActivity extends AppCompatActivity
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
             listView.setAdapter(arrayAdapter);
 
-        }
+        } catch (Exception e) {
 
-        catch (Exception e) { }
+        }
 //        try {
 //            someData = getSharedPreferences(filename, 0);
 //            String dataReturned = someData.getString("sharedString", "couldn't load data");
@@ -65,19 +68,15 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("Name",name);
-                String strSavedMem1 = sharedpreferences.getString("name", "");
-                String[] values = new String[] { strSavedMem1};
-                arrayAdapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_list_item_1, values);
-                String data=(String)parent.getItemAtPosition(position);
-                Intent i = new Intent(MainActivity.this,SlidingMainActivity.class);
-                i.putExtra("data",data);
+                String data = (String) parent.getItemAtPosition(position);
+                Intent i = new Intent(MainActivity.this, SlidingMainActivity.class);
+                i.putExtra("data", data);
                 startActivity(i);
+//                SavePreferences("MEM1", name);
+//                LoadPreferences();
             }
         });
-
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,12 +88,31 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.add)
-        {
-            Intent i=new Intent(MainActivity.this,AddCity.class);
+        if (id == R.id.add) {
+            Intent i = new Intent(MainActivity.this, AddCity.class);
             startActivity(i);
         }
+            if(id == R.id.favorite)
+            {
+               // LoadPreferences();
+                viewdata();
+
+            }
         return false;
+        }
+    private void viewdata()
+    {
+        Operations op=new Operations(this);
+        try {
+            op.open();
+            filelist2=op.getdata();
+            arrayAdapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_list_item_1, filelist2);
+            listView.setAdapter(arrayAdapter1);
+            op.close();
+//                  viw.setText(data);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
