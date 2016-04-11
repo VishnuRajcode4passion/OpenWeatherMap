@@ -1,3 +1,4 @@
+
 package com.example.machine2.ne;
 
 /**
@@ -18,7 +19,8 @@ public class LoadImageTask extends AsyncTask<String,Void,Bitmap> {
     String urlOfImage;
     Bitmap image;
     InputStream inputStream;
-    // fetching image from url
+
+     // fetching image from url
     protected Bitmap doInBackground(String...urls){
         urlOfImage = urls[0];
         image = null;
@@ -33,3 +35,4 @@ public class LoadImageTask extends AsyncTask<String,Void,Bitmap> {
     }
 
 }
+

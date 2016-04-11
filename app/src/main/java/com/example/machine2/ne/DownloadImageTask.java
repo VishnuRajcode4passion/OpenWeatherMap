@@ -1,3 +1,4 @@
+
 package com.example.machine2.ne;
 
 import android.graphics.Bitmap;
@@ -17,9 +18,9 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
     InputStream inputStream;
 
     public DownloadImageTask(ImageView imageView) {
-
         this.imageView = imageView;
     }
+
     // fetching image from url
     protected Bitmap doInBackground(String...urls){
         urlOfImage = urls[0];
@@ -40,3 +41,4 @@ public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
 
   }
  }
+

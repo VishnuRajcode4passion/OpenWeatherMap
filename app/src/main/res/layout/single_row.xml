@@ -10,7 +10,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
+<<<<<<< HEAD
         card_view:cardCornerRadius="5dp"
+=======
+        card_view:cardCornerRadius="4dp"
+>>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
         >
 
         <RelativeLayout
@@ -56,5 +60,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignBottom="@+id/textView2" />
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
+
 </RelativeLayout>
+

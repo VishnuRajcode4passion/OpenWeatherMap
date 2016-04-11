@@ -1,32 +1,37 @@
+
 package com.example.machine2.ne;
 
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
+        import android.app.ProgressDialog;
+        import android.graphics.Bitmap;
+        import android.graphics.BitmapFactory;
+        import android.os.Bundle;
+        import android.support.v4.app.Fragment;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.ListView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+        import com.android.volley.Request;
+        import com.android.volley.RequestQueue;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
+        import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.util.concurrent.ExecutionException;
+        import java.io.InputStream;
+        import java.net.URL;
+        import java.util.ArrayList;
+        import java.util.concurrent.ExecutionException;
 
 
 public class TabFragment2 extends Fragment {
-
 
     RequestQueue queue;
     ProgressDialog progressDialog;
@@ -37,17 +42,19 @@ public class TabFragment2 extends Fragment {
     ImageView imageView;
     ListView lv;
     String time[] = new String[7];
-    String description[] = new String[7];
+    String description[] =new String[7];
     String temperature[] = new String[7];
     Bitmap image[] = new Bitmap[7];
-    String base[] = new String[7];
+    String base[] =new String[7];
     String icon[] = new String[7];
+
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        imageView = (ImageView) getActivity().findViewById(R.id.imageView2);
-        lv = (ListView) getActivity().findViewById(R.id.listView2);
+        imageView=(ImageView)getActivity().findViewById(R.id.imageView2);
+        lv=(ListView) getActivity().findViewById(R.id.listView2);
 
     }
 
@@ -55,7 +62,6 @@ public class TabFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.tab_fragment_2, container, false);
     }
-
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -77,15 +83,16 @@ public class TabFragment2 extends Fragment {
                 progressDialog.dismiss();
                 try {
                     JSONArray jsonArray = response.getJSONArray("list");
-                    System.out.println("JSON ARRAY " + jsonArray);
+                    System.out.println("JSON ARRAY "+jsonArray);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         time[i] = jsonObject.getString("dt_txt");
                         JSONArray jsonArray2 = jsonObject.getJSONArray("weather");
                         JSONObject jsonObject2 = jsonArray2.getJSONObject(0);
                         icon[i] = jsonObject2.getString("icon");
-                        base[i] = "http://api.openweathermap.org/img/w/" + icon[i] + ".png";
+                        base[i]= "http://api.openweathermap.org/img/w/"+icon[i]+".png";
                         LoadImageTask loadImageTask = new LoadImageTask();
 
                         try {
@@ -99,12 +106,12 @@ public class TabFragment2 extends Fragment {
                         description[i] = jsonObject2.getString("description");
                         JSONObject jsonObject3 = jsonObject.getJSONObject("main");
                         temperature[i] = jsonObject3.getString("temp");
-                        System.out.println("TIME " + time[i]);
-                        System.out.println("DESCRIPTION " + description[i]);
+                        System.out.println("TIME "+time[i]);
+                        System.out.println("DESCRIPTION "+description[i]);
                         System.out.println("TEMPERATURE " + temperature[i]);
-                        System.out.println("IMAGE " + image[i]);
+                        System.out.println("IMAGE "+image[i]);
                     }
-                    lv.setAdapter(new CustomAdapter(getContext(), time, description, temperature, image));
+                    lv.setAdapter(new CustomAdapter(getContext(),time,description,temperature,image));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -121,6 +128,7 @@ public class TabFragment2 extends Fragment {
         queue.add(jsObjRequest);
 
     }
-}
 
+
+}
 

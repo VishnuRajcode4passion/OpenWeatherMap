@@ -1,3 +1,4 @@
+
 package com.example.machine2.ne;
 
 import android.app.AlertDialog;
@@ -14,18 +15,15 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /**
@@ -34,16 +32,16 @@ import java.util.ArrayList;
 /*The activity for add the city to Main Activity
 
  */
-
-
-
 public class AddCity extends AppCompatActivity
-
 {
+<<<<<<< HEAD
 
 
   //variables declaration
     TextView addCity;
+=======
+//variables declaration
+>>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
     EditText search;
     ListView listView;
     ImageButton imageButton;
@@ -57,12 +55,17 @@ public class AddCity extends AppCompatActivity
     AlertDialog.Builder alertDialogBuilder;
     Intent intent;
     AlertDialog alertDialog;
+<<<<<<< HEAD
     String name1;
+=======
+    RequestQueue queue;
+
+>>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city);
-        final RequestQueue queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         listView = (ListView) findViewById(R.id.cityList);
         //Onclick  of  image button
@@ -72,16 +75,15 @@ public class AddCity extends AppCompatActivity
                 arrayList.clear();
                 search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString().trim();
+
                 if(list.isEmpty() || list.length() == 0 || list.equals("") || list== null)
                 {
                     Toast.makeText(getApplication(), "Enter a city", Toast.LENGTH_LONG).show();
-                }
-
-                 else {
-                         //fetch data from the internet with selected city
-                     url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
+                } else {
+                    //fetch data from the internet with selected city
+                    url = "http://api.openweathermap.org/data/2.5/find?q=" + list + "&type=like&cnt=10&APPID=45df4fca7d202600be0e657e2d0a9dcd";
                     //Request for the json objects
-                     jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             // TODO Auto-generated method stub
@@ -98,7 +100,6 @@ public class AddCity extends AppCompatActivity
                                     listView.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -111,7 +112,6 @@ public class AddCity extends AppCompatActivity
                         }
                     });
                     queue.add(jsObjRequest);
-
                 }
             }
         });
@@ -123,15 +123,23 @@ public class AddCity extends AppCompatActivity
             public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
 
                 alertDialogBuilder = new AlertDialog.Builder(AddCity.this);
-                alertDialogBuilder.setMessage("Are you sure,You wanted to Add City");
+                alertDialogBuilder.setMessage("Are you sure,you want to add City");
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                          name1 = (String) parent.getItemAtPosition(position);
                         intent = new Intent(AddCity.this, MainActivity.class);
+<<<<<<< HEAD
                         intent.putExtra("mylist", name1);
                         intent.putExtra("desc",description);
                         savedata();
+=======
+                        intent.putExtra("mylist", name);
+                        SQLController sqlController = new SQLController(AddCity.this);
+                        sqlController.open();
+                        sqlController.insert(name);
+                        sqlController.close();
+>>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
                         startActivity(intent);
                     }
                 });
@@ -142,8 +150,7 @@ public class AddCity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-
-                 alertDialog = alertDialogBuilder.create();
+                alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
         });
@@ -181,7 +188,6 @@ public class AddCity extends AppCompatActivity
 
        }
     }
-
 
 
 

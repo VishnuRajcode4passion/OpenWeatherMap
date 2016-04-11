@@ -1,13 +1,16 @@
+
 package com.example.machine2.ne;
 
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class SlidingMainActivity extends AppCompatActivity {
@@ -17,14 +20,13 @@ public class SlidingMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sliding_activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
+//       setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-
         tabLayout.addTab(tabLayout.newTab().setText("CURRENT"));
         tabLayout.addTab(tabLayout.newTab().setText("FORECAST"));
         //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
-
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -68,3 +70,4 @@ public class SlidingMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

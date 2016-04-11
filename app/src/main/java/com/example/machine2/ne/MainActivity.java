@@ -1,8 +1,8 @@
+
 package com.example.machine2.ne;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,18 +19,9 @@ import java.util.ArrayList;
 //Main activity class
 public class MainActivity extends AppCompatActivity {
     ListView listView;
-    ArrayList<String> filelist = new ArrayList<String>();
-    ArrayList<String> filelist2 = new ArrayList<String>();
-    ArrayList<String> filelist3 = new ArrayList<String>();
-    Bundle bundle;
-    String name;
-    String data;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
+
     ArrayAdapter<String> arrayAdapter;
-    ArrayAdapter<String> arrayAdapter1;
-//    String filename = "mySharedString";
-//    SharedPreferences someData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         listView = (ListView) findViewById(R.id.listView);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        someData = getSharedPreferences(filename,0);
-        //exception has to be handled when the main activity is first launched
-        try {
-            // Getting the data from previous activity and showing in list view.
-            bundle = getIntent().getExtras();
-            name = bundle.getString("mylist");
-//            SharedPreferences.Editor  editor = someData.edit();
-//            editor.putString("sharedString", name);
-//            editor.commit();
-            filelist.add(name);
-            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
-            listView.setAdapter(arrayAdapter);
 
-        } catch (Exception e) {
-
-        }
-//        try {
-//            someData = getSharedPreferences(filename, 0);
-//            String dataReturned = someData.getString("sharedString", "couldn't load data");
-//            filelist.add(dataReturned);
-//            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filelist);
-//            listView.setAdapter(arrayAdapter);
-//        }
-//        catch (Exception e) {}
+        SQLController sqlController = new SQLController(MainActivity.this);
+        sqlController.open();
+        ArrayList cursor = sqlController.fetch();
+        sqlController.close();
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.listview_textcolor, cursor);
+        listView.setAdapter(arrayAdapter);
         //when clicking the particular item in listview ,pass the data to detailPage activity.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,27 +66,11 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, AddCity.class);
             startActivity(i);
         }
-            if(id == R.id.favorite)
-            {
-               // LoadPreferences();
-                viewdata();
+        if (id == R.id.favorite) {
+            // LoadPreferences();
 
-            }
+
+        }
         return false;
-        }
-    private void viewdata()
-    {
-        Operations op=new Operations(this);
-        try {
-            op.open();
-            filelist2=op.getdata();
-            arrayAdapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_list_item_1, filelist2);
-            listView.setAdapter(arrayAdapter1);
-            op.close();
-//                  viw.setText(data);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
-
 }

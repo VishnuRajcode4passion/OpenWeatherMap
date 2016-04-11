@@ -1,3 +1,4 @@
+
 package com.example.machine2.ne;
 
 import android.content.Context;
@@ -12,11 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CustomAdapter extends BaseAdapter{
+
     Context context;
     String time[];
     String description[];
     String temperature[];
     Bitmap image[];
+
   //  int [] imageId;
     private static LayoutInflater inflater=null;
     public CustomAdapter(Context context, String[] time, String[] description, String[] temperature, Bitmap[] image) {
@@ -82,3 +85,4 @@ public class CustomAdapter extends BaseAdapter{
     }
 
 }
+

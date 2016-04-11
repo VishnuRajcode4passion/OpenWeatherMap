@@ -12,6 +12,7 @@
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" >
 
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -25,6 +26,7 @@
         android:layout_alignStart="@+id/textView11">
         <requestFocus />
     </EditText>
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +36,7 @@
             android:id="@+id/imageButton"
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignEnd="@+id/cityList" />
+
     </android.support.v7.widget.Toolbar>
 
     <ListView android:id="@+id/cityList"
@@ -43,4 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"/>
+
+
 </RelativeLayout>
+
