@@ -3,7 +3,6 @@ package com.example.machine2.ne;
 
         import android.app.ProgressDialog;
         import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
         import android.os.Bundle;
         import android.support.v4.app.Fragment;
         import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ package com.example.machine2.ne;
         import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.ListView;
-        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.android.volley.Request;
@@ -25,9 +23,6 @@ package com.example.machine2.ne;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-        import java.io.InputStream;
-        import java.net.URL;
-        import java.util.ArrayList;
         import java.util.concurrent.ExecutionException;
 
 
@@ -47,8 +42,6 @@ public class TabFragment2 extends Fragment {
     Bitmap image[] = new Bitmap[7];
     String base[] =new String[7];
     String icon[] = new String[7];
-
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -106,10 +99,7 @@ public class TabFragment2 extends Fragment {
                         description[i] = jsonObject2.getString("description");
                         JSONObject jsonObject3 = jsonObject.getJSONObject("main");
                         temperature[i] = jsonObject3.getString("temp");
-                        System.out.println("TIME "+time[i]);
-                        System.out.println("DESCRIPTION "+description[i]);
-                        System.out.println("TEMPERATURE " + temperature[i]);
-                        System.out.println("IMAGE "+image[i]);
+
                     }
                     lv.setAdapter(new CustomAdapter(getContext(),time,description,temperature,image));
                 } catch (JSONException e) {

@@ -21,8 +21,12 @@
         <activity android:name=".AddCity"
             android:theme="@style/AppTheme.NoActionBar"
             ></activity>
+<<<<<<< HEAD
         <activity android:name=".SlidingMainActivity"></activity>
 
+=======
+        <activity android:name=".SlidingActivity"></activity>
+>>>>>>> f92c3029305188b10dc699d1828417fb8a365b94
     </application>
 
 </manifest>
