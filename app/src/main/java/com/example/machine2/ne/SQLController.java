@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class  SQLController {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "cityList";
     private static final String TABLE_CONTACTS = "city";
 
@@ -30,7 +30,7 @@ public class  SQLController {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT)";
+            String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID + " TEXT)";
             db.execSQL(CREATE_CONTACTS_TABLE);
         }
 
@@ -41,23 +41,26 @@ public class  SQLController {
             onCreate(db);
         }
     }
-        public void insert(String name) {
+        public void insert(int id) {
             ContentValues values = new ContentValues();
-            values.put(KEY_NAME, name); // City Name
+            values.put(KEY_ID, id); // City Name
+            System.out.println("ID IS " + id);
             database.insert(TABLE_CONTACTS, null, values);
         }
         public ArrayList fetch() {
             String[] columns = new String[] {
-                    KEY_ID,KEY_NAME
+                    KEY_ID
             };
             Cursor cursor = database.query(TABLE_CONTACTS, columns, null, null, null, null, null);
             String result ="";
-            int iName = cursor.getColumnIndex(KEY_NAME);
+            int iName = cursor.getColumnIndex(KEY_ID);
            for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
            {
               result = cursor.getString(iName);
+               System.out.println("RESULT "+result);
                arrayList.add(result);
            }
+
             return arrayList;
         }
 
