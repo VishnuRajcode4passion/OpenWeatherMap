@@ -1,7 +1,6 @@
 
 package com.example.machine2.ne;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Main activity class
@@ -21,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
 
     ArrayAdapter<String> arrayAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, SlidingMainActivity.class);
                 i.putExtra("data", data);
                 startActivity(i);
-//                SavePreferences("MEM1", name);
-//                LoadPreferences();
+
             }
         });
     }
@@ -65,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.add) {
             Intent i = new Intent(MainActivity.this, AddCity.class);
             startActivity(i);
-        }
-        if (id == R.id.favorite) {
-            // LoadPreferences();
-
-
         }
         return false;
     }

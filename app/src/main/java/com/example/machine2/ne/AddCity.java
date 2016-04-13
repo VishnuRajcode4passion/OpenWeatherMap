@@ -2,7 +2,6 @@
 package com.example.machine2.ne;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +12,19 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -32,37 +33,28 @@ import java.util.ArrayList;
 /*The activity for add the city to Main Activity
 
  */
-public class AddCity extends AppCompatActivity
-{
-<<<<<<< HEAD
+public class AddCity extends AppCompatActivity {
 
-
-  //variables declaration
-    TextView addCity;
-=======
-//variables declaration
->>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
+    //variables declaration
     EditText search;
     ListView listView;
     ImageButton imageButton;
+
     ArrayList<String> arrayList = new ArrayList<>();
-    String name,description;
+
+    String name;
     String url;
-    JSONArray jsonArray,jsonArray2;
+    JSONArray jsonArray;
     JsonObjectRequest jsObjRequest;
-    JSONObject jsonObject,jsonObject2;
+    JSONObject jsonObject;
+
     ArrayAdapter<String> adapter;
     AlertDialog.Builder alertDialogBuilder;
     Intent intent;
     AlertDialog alertDialog;
-<<<<<<< HEAD
-    String name1;
-=======
     RequestQueue queue;
 
->>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city);
         queue = Volley.newRequestQueue(this);
@@ -76,8 +68,7 @@ public class AddCity extends AppCompatActivity
                 search = (EditText) findViewById(R.id.editText);
                 String list = search.getText().toString().trim();
 
-                if(list.isEmpty() || list.length() == 0 || list.equals("") || list== null)
-                {
+                if (list.isEmpty() || list.length() == 0 || list.equals("") || list == null) {
                     Toast.makeText(getApplication(), "Enter a city", Toast.LENGTH_LONG).show();
                 } else {
                     //fetch data from the internet with selected city
@@ -90,11 +81,11 @@ public class AddCity extends AppCompatActivity
                             System.out.println("RESPONSE " + response);
                             try {
 
-                                 jsonArray = new JSONArray(response.getString("list"));
+                                jsonArray = new JSONArray(response.getString("list"));
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     jsonObject = jsonArray.getJSONObject(i);
                                     name = jsonObject.getString("name");
-                                    System.out.println("name"+name);
+                                    System.out.println("name" + name);
                                     arrayList.add(name);
                                     adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_textcolor, arrayList);
                                     listView.setAdapter(adapter);
@@ -115,7 +106,7 @@ public class AddCity extends AppCompatActivity
                 }
             }
         });
-         //The onclick of the list view
+        //The onclick of the list view
         //Searching city results are displayed on this listview
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -127,19 +118,14 @@ public class AddCity extends AppCompatActivity
                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                         name1 = (String) parent.getItemAtPosition(position);
+                        name = (String) parent.getItemAtPosition(position);
                         intent = new Intent(AddCity.this, MainActivity.class);
-<<<<<<< HEAD
-                        intent.putExtra("mylist", name1);
-                        intent.putExtra("desc",description);
-                        savedata();
-=======
+
                         intent.putExtra("mylist", name);
                         SQLController sqlController = new SQLController(AddCity.this);
                         sqlController.open();
                         sqlController.insert(name);
                         sqlController.close();
->>>>>>> 7c83d48900dad3f2a409dd988792afe6aac39dca
                         startActivity(intent);
                     }
                 });
@@ -154,42 +140,8 @@ public class AddCity extends AppCompatActivity
                 alertDialog.show();
             }
         });
-        }
-    public void savedata()
-    {
-        boolean diditwork=true;
-        try {
-
-            Operations entry = new Operations(getApplication());
-            entry.open();
-            entry.creatEntry(name1);
-            entry.close();
-        }catch(Exception e)
-        {
-            diditwork=false;
-            String error=e.toString();
-            Dialog d=new Dialog((this));
-            d.setTitle("no");
-            TextView viw=new TextView(this);
-            viw.setText("error");
-            d.setContentView(viw);
-            d.show();
-        }finally {
-            if(diditwork)
-            {
-                Dialog d=new Dialog(this);
-                this.setTitle("yes");
-                TextView viw=new TextView(this);
-                viw.setText("success");
-                d.setContentView(viw);
-                d.show();
-            }
-          }
-
-       }
     }
-
-
+}
 
 
 
