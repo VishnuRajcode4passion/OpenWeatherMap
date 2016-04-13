@@ -120,37 +120,16 @@ public class AddCity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        String name = (String) parent.getItemAtPosition(position);
-
-                        url = "http://api.openweathermap.org/data/2.5/weather?q=" + name + "&APPID=45df4fca7d202600be0e657e2d0a9dcd";
-                        //Request for the json objects
-                        jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                // TODO Auto-generated method stub
-                                System.out.println("RESPONSE " + response);
-                                try {
-                                    cityId = (int) response.get("id");
-                                    System.out.println("THE CLICKED CITY ID IS " +cityId);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "volley error", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        queue.add(jsObjRequest);
+                        name = (String) parent.getItemAtPosition(position);
                         intent = new Intent(AddCity.this, MainActivity.class);
-                        SQLController sqlController = new SQLController(AddCity.this);
-                        sqlController.open();
-                        sqlController.insert(cityId);
-                        sqlController.close();
-                        startActivity(intent);
+
+                        intent.putExtra("mylist", name);
+
+//                        SQLController sqlController = new SQLController(AddCity.this);
+//                        sqlController.open();
+//                        sqlController.insert(cityId);
+//                        sqlController.close();
+//                        startActivity(intent);
                     }
 
                 });
@@ -165,13 +144,9 @@ public class AddCity extends AppCompatActivity {
                 alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
 
-
             }
         });
     }
-
 }
-
-
 
 

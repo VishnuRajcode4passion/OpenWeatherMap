@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,28 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import java.util.concurrent.ExecutionException;
-
 
 //Main activity class
 public class MainActivity extends AppCompatActivity {
@@ -65,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        listView= (ListView)findViewById(R.id.listView);
 
+
+        listView = (ListView) findViewById(R.id.listView);
         SQLController sqlController = new SQLController(MainActivity.this);
         sqlController.open();
         ArrayList cursor = sqlController.fetch();
@@ -137,9 +124,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String data=(String)parent.getItemAtPosition(position);
-                Intent i = new Intent(MainActivity.this,SlidingActivity.class);
-                i.putExtra("data",data);
+
+                String data = (String) parent.getItemAtPosition(position);
+                Intent i = new Intent(MainActivity.this, SlidingActivity.class);
+                i.putExtra("data", data);
                 startActivity(i);
 
             }
