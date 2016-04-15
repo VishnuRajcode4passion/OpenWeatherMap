@@ -128,7 +128,7 @@ public class AddCity extends AppCompatActivity {
                                 // TODO Auto-generated method stub
                                 System.out.println("RESPONSE " + response);
                                 try {
-                                    cityId =  response.getString("id");
+                                    cityId = response.getString("id");
                                     System.out.println("THE CLICKED CITY ID IS " +cityId);
                                     intent = new Intent(AddCity.this, MainActivity.class);
                                     SQLController sqlController = new SQLController(AddCity.this);

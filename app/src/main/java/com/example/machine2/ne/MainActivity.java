@@ -38,18 +38,9 @@ public class MainActivity extends AppCompatActivity
     ProgressDialog progressDialog;
     String url;
     JsonObjectRequest jsObjRequest;
-    JSONArray jsonArray;
-    JSONObject jsonObject;
-    JSONObject object;
     String tempincelsius[];
     String cityname[];
-    String cityNames[];
-    JSONObject jsonObj;
-    String countryname[];
     Bitmap image;
-  //  int i;
-    String base[];
-    String icon[];
     ArrayList<Cities> cityList;
     ArrayAdapter<Cities> arrayAdapter;
 
@@ -66,11 +57,6 @@ public class MainActivity extends AppCompatActivity
         final String cursor = sqlController.fetch();
         sqlController.close();
         System.out.println("ARRAY LIST CONTENTS " + cursor);
-//        cityNames = new String[cursor.size()];
-//        cityNames = (String[]) cursor.toArray(cityNames);
-//        System.out.println("CITY NAMES "+cityNames);
-//        for(String s : cityNames)
-//            System.out.println("CITY IDs "+s);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("LOADING...");
         progressDialog.show();
@@ -92,10 +78,8 @@ public class MainActivity extends AppCompatActivity
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                           JSONArray jsonArray1 = jsonObject.getJSONArray("weather");
                             JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
-                         //   icon[i] = jsonObject1.getString("icon");
                           String icon =  jsonObject1.getString("icon");
                             String image="http://api.openweathermap.org/img/w/" + icon + ".png";
-//                            base[i] = "http://api.openweathermap.org/img/w/" + icon[i] + ".png";
                             try {
                                 city.setIcon(new LoadImageTask().execute(image).get());
                             } catch (InterruptedException e) {
@@ -104,15 +88,9 @@ public class MainActivity extends AppCompatActivity
                                 e.printStackTrace();
                             }
                             JSONObject jsonObject2 = jsonObject.getJSONObject("main");
-                          //  object = response.getJSONObject("main");
-                          //  tempincelsius[i] = jsonObject2.getString("temp");
                             city.setTemperature(jsonObject2.getString("temp"));
-                           // cityname[i] = jsonObject.getString("name");
                             city.setName(jsonObject.getString("name"));
                             cityList.add(city);
-//                            jsonObj = new JSONObject(response.getString("sys"));
-//                            countryname[i] = jsonObj.getString("country");
-                            // tvCity.setText(cityname + "," + countryname);
                         }
                         arrayAdapter.notifyDataSetChanged();
 
@@ -141,9 +119,6 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              //  String data=(String)parent.getItemAtPosition(position);
-             //   String data = (String) parent.getSelectedItem();
-              //   data = (DataModel) parent.getItemAtPosition(position);
                 TextView v = (TextView) view.findViewById(R.id.textView6);
                 System.out.println("SELECTED ITEM " + v.getText());
                 String data = (String) v.getText();
