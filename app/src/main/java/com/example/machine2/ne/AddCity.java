@@ -50,7 +50,7 @@ public class AddCity extends AppCompatActivity {
     Intent intent;
     AlertDialog alertDialog;
     RequestQueue queue;
-    int cityId;
+    String cityId;
     String list;
 
 
@@ -128,8 +128,14 @@ public class AddCity extends AppCompatActivity {
                                 // TODO Auto-generated method stub
                                 System.out.println("RESPONSE " + response);
                                 try {
-                                    cityId = (int) response.get("id");
+                                    cityId =  response.getString("id");
                                     System.out.println("THE CLICKED CITY ID IS " +cityId);
+                                    intent = new Intent(AddCity.this, MainActivity.class);
+                                    SQLController sqlController = new SQLController(AddCity.this);
+                                    sqlController.open();
+                                    sqlController.insert(cityId);
+                                    sqlController.close();
+                                    startActivity(intent);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -143,12 +149,7 @@ public class AddCity extends AppCompatActivity {
                             }
                         });
                         queue.add(jsObjRequest);
-                        intent = new Intent(AddCity.this, MainActivity.class);
-                        SQLController sqlController = new SQLController(AddCity.this);
-                        sqlController.open();
-                        sqlController.insert(cityId);
-                        sqlController.close();
-                        startActivity(intent);
+
                     }
 
                 });

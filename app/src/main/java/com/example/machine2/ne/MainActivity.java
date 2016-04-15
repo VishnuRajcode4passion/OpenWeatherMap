@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,16 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -38,24 +34,24 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity
 {
     ListView listView;
-    ArrayAdapter<String> arrayAdapter;
-
     RequestQueue queue;
     ProgressDialog progressDialog;
-    String url[] = new String[30];
+    String url;
     JsonObjectRequest jsObjRequest;
     JSONArray jsonArray;
     JSONObject jsonObject;
     JSONObject object;
-    String tempincelsius[]=new String[30];
-    String cityname[]=new String[30];
-    String cityNames[] = new String[30];
+    String tempincelsius[];
+    String cityname[];
+    String cityNames[];
     JSONObject jsonObj;
-    String countryname[]= new String[30];
-    Bitmap image[]=new Bitmap[30];
-    int i;
-    String base[]=new String[30];
-    String icon[]=new String[30];
+    String countryname[];
+    Bitmap image;
+  //  int i;
+    String base[];
+    String icon[];
+    ArrayList<Cities> cityList;
+    ArrayAdapter<Cities> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,75 +63,90 @@ public class MainActivity extends AppCompatActivity
 
         SQLController sqlController = new SQLController(MainActivity.this);
         sqlController.open();
-        ArrayList cursor = sqlController.fetch();
+        final String cursor = sqlController.fetch();
         sqlController.close();
-        System.out.println("ARRAY LIST CONTENTS "+cursor);
+        System.out.println("ARRAY LIST CONTENTS " + cursor);
 //        cityNames = new String[cursor.size()];
 //        cityNames = (String[]) cursor.toArray(cityNames);
+//        System.out.println("CITY NAMES "+cityNames);
 //        for(String s : cityNames)
 //            System.out.println("CITY IDs "+s);
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setTitle("LOADING...");
-//    //    progressDialog.show();
-//                queue = Volley.newRequestQueue(this);
-//                System.out.println("CITY NAMES LENGTH " + cityNames.length);
-//        if(cityNames.length!=0) {
-//            url[i] = "http://api.openweathermap.org/data/2.5/weather?q=" + cityNames[i] + "&units=metric&APPID=45df4fca7d202600be0e657e2d0a9dcd";
-//            System.out.println("CITY NAMES ARE " + cityNames[i]);
-//            jsObjRequest = new JsonObjectRequest(Request.Method.GET, url[i], null, new Response.Listener<JSONObject>() {
-//                @Override
-//                // JSON response will be obtained in this method if there are no network issues
-//                public void onResponse(JSONObject response) {
-//                    // TODO Auto-generated method stub
-//                    System.out.println("RESPONSE " + response);
-//                    //  progressDialog.dismiss();
-//                    try {
-//                        jsonArray = new JSONArray(response.getString("weather"));
-//                        jsonObject = jsonArray.getJSONObject(0);
-//                        icon[i] = jsonObject.getString("icon");
-//                        base[i] = "http://api.openweathermap.org/img/w/" + icon[i] + ".png";
-//                        try {
-//                            image[i] = new LoadImageTask().execute(base[i]).get();
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        } catch (ExecutionException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        object = response.getJSONObject("main");
-//                        tempincelsius[i] = object.getString("temp");
-//                        // tvTemparature.setText(tempincelsius + " °C");
-//
-//                        cityname[i] = response.getString("name");
-//                        jsonObj = new JSONObject(response.getString("sys"));
-//                        countryname[i] = jsonObj.getString("country");
-//                        // tvCity.setText(cityname + "," + countryname);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }, new Response.ErrorListener() {
-//                @Override
-//                //If there is any error in network connection ,then this method will be executed
-//                public void onErrorResponse(VolleyError error) {
-//                    progressDialog.dismiss();
-//                    Toast.makeText(getApplicationContext(), "Network Error ", Toast.LENGTH_LONG).show();
-//                }
-//            });
-//            System.out.println("CITY NAME " + cityname[i]);
-//            System.out.println("IMAGE " + image[i]);
-//            System.out.println("TEMPERATURE " + tempincelsius[i]);
-//            queue.add(jsObjRequest);
-//
-//        }
-//            CityListAdapter cityListAdapter = new CityListAdapter(this,cityname,tempincelsius,image);
-//            listView.setAdapter(cityListAdapter);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("LOADING...");
+        progressDialog.show();
+                queue = Volley.newRequestQueue(this);
+            url = "http://api.openweathermap.org/data/2.5/group?id="+cursor+"&units=metric&appid=45df4fca7d202600be0e657e2d0a9dcd";
+            System.out.println("CITY NAMES ARE " + url);
+            jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                // JSON response will be obtained in this method if there are no network issues
+                public void onResponse(JSONObject response) {
+                    // TODO Auto-generated method stub
+                    System.out.println("RESPONSE " + response);
+                      progressDialog.dismiss();
+
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("list");
+                        for(int i=0;i<jsonArray.length();i++) {
+                            Cities city = new Cities();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                          JSONArray jsonArray1 = jsonObject.getJSONArray("weather");
+                            JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
+                         //   icon[i] = jsonObject1.getString("icon");
+                          String icon =  jsonObject1.getString("icon");
+                            String image="http://api.openweathermap.org/img/w/" + icon + ".png";
+//                            base[i] = "http://api.openweathermap.org/img/w/" + icon[i] + ".png";
+                            try {
+                                city.setIcon(new LoadImageTask().execute(image).get());
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                            JSONObject jsonObject2 = jsonObject.getJSONObject("main");
+                          //  object = response.getJSONObject("main");
+                          //  tempincelsius[i] = jsonObject2.getString("temp");
+                            city.setTemperature(jsonObject2.getString("temp"));
+                           // cityname[i] = jsonObject.getString("name");
+                            city.setName(jsonObject.getString("name"));
+                            cityList.add(city);
+//                            jsonObj = new JSONObject(response.getString("sys"));
+//                            countryname[i] = jsonObj.getString("country");
+                            // tvCity.setText(cityname + "," + countryname);
+                        }
+                        arrayAdapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                //If there is any error in network connection ,then this method will be executed
+                public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Network Error ", Toast.LENGTH_LONG).show();
+                }
+            });
+            System.out.println("CITY NAME " + cityname);
+            System.out.println("IMAGE " + image);
+            System.out.println("TEMPERATURE " + tempincelsius);
+        queue.add(jsObjRequest);
+
+            cityList = new ArrayList<Cities>();
+             arrayAdapter = new CityListAdapter(this,R.layout.city_list,cityList);
+            listView.setAdapter(arrayAdapter);
 
         //when clicking the particular item in listview ,pass the data to detailPage activity.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String data=(String)parent.getItemAtPosition(position);
+              //  String data=(String)parent.getItemAtPosition(position);
+             //   String data = (String) parent.getSelectedItem();
+              //   data = (DataModel) parent.getItemAtPosition(position);
+                TextView v = (TextView) view.findViewById(R.id.textView6);
+                System.out.println("SELECTED ITEM " + v.getText());
+                String data = (String) v.getText();
                 Intent i = new Intent(MainActivity.this,SlidingActivity.class);
                 i.putExtra("data",data);
                 startActivity(i);
