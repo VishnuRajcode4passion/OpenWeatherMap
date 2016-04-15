@@ -11,7 +11,7 @@ public class  SQLController
 {
 
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "cityList";
     private static final String TABLE_CONTACTS = "city";
 

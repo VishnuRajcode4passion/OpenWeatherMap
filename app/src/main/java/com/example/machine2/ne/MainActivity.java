@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Cities> cityList;
     ArrayAdapter<Cities> arrayAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         listView=(ListView)findViewById(R.id.listView);
         SQLController sqlController = new SQLController(MainActivity.this);
         sqlController.open();
+
         final String cursor = sqlController.fetch();
         sqlController.close();
         System.out.println("ARRAY LIST CONTENTS " + cursor);
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
               //  String data=(String)parent.getItemAtPosition(position);
              //   String data = (String) parent.getSelectedItem();
               //   data = (DataModel) parent.getItemAtPosition(position);

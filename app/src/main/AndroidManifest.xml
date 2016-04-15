@@ -23,7 +23,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             ></activity>
         <activity android:name=".SlidingMainActivity"></activity>
-        <activity android:name=".Viewses"></activity>
 
     </application>
 
