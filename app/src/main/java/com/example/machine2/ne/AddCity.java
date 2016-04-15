@@ -54,7 +54,8 @@ public class AddCity extends AppCompatActivity {
     Intent intent;
     AlertDialog alertDialog;
     RequestQueue queue;
-
+    String cityId;
+    String list;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city);
@@ -91,6 +92,15 @@ public class AddCity extends AppCompatActivity {
                                 // TODO Auto-generated method stub
                                 System.out.println("RESPONSE " + response);
                                 try {
+
+                                    cityId =  response.getString("id");
+                                    System.out.println("THE CLICKED CITY ID IS " +cityId);
+                                    intent = new Intent(AddCity.this, MainActivity.class);
+                                    SQLController sqlController = new SQLController(AddCity.this);
+                                    sqlController.open();
+                                    sqlController.insert(cityId);
+                                    sqlController.close();
+                                    startActivity(intent);
 
                                     jsonArray = new JSONArray(response.getString("list"));
                                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -136,36 +146,22 @@ public class AddCity extends AppCompatActivity {
                         public void onClick(DialogInterface arg0, int arg1) {
 
 
-                            String name = (String) parent.getItemAtPosition(position);
-                            String Cid=(String) parent.getItemAtPosition(position);
-                            System.out.println("id"+CityId);
-//                           intent = new Intent(AddCity.this, MainActivity.class);
-//                           intent.putExtra("mylist", name);
-                            intent = new Intent(AddCity.this,Viewses.class);
-                            SQLController sqlController = new SQLController(AddCity.this);
-                            sqlController.open();
-                            sqlController.insert(name, CityId);
-                            sqlController.close();
-                            startActivity(intent);
+                            //alert dialog is displayed when click on the listview to add the city
+
+                            alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
 
                         }
                     });
-
-
-                    //alert dialog is displayed when click on the listview to add the city
-
-                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
 
                 }
             });
-
         }
     }
 }

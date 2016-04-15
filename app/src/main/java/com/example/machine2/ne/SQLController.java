@@ -10,13 +10,14 @@ import java.util.ArrayList;
 public class  SQLController
 {
 
-    private static final int DATABASE_VERSION = 6;
+
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "cityList";
     private static final String TABLE_CONTACTS = "city";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String CITY_ID = "_cityid";
+
+    private static final String CITY_ID = "cityId";
 
 
     private DBhelper dbHelper;
@@ -37,8 +38,10 @@ public class  SQLController
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-           // String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT, " + CITY_ID + " TEXT)";
-            String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID + " INTEGER PRIMARY KEY,"  + CITY_ID + " TEXT)";
+
+            String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +CITY_ID + " TEXT)";
+
+
             db.execSQL(CREATE_CONTACTS_TABLE);
 
 
@@ -51,31 +54,31 @@ public class  SQLController
             onCreate(db);
         }
     }
-    public void insert(String name,String cityid) {
-        ContentValues values = new ContentValues();
-        //values.put(KEY_NAME, name);
-        values.put(CITY_ID, cityid);// City Name
-        System.out.println("values" + values);
-        database.insert(TABLE_CONTACTS, null, values);
-    }
-    public String fetch() {
-        String[] columns = new String[] {
-               // KEY_ID,KEY_NAME,CITY_ID
-                KEY_ID,CITY_ID
-        };
-        Cursor cursor = database.query(TABLE_CONTACTS, columns, null, null, null, null, null);
-        String result ="";
-       // int iName = cursor.getColumnIndex(KEY_NAME);
-        int cId = cursor.getColumnIndex(CITY_ID);
-        for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
-        {
-//            result = cursor.getString(iName);//+" "+cursor.getString(cId);
-//            arrayList.add(result)
- result =result +","+ cursor.getString(cId);
-           //arrayList.add(result);
+
+        public void insert(String id) {
+            ContentValues values = new ContentValues();
+            values.put(CITY_ID, id); // City Name
+            System.out.println("ID IS " + id);
+            database.insert(TABLE_CONTACTS, null, values);
         }
-        return result;
-    }
+        public String fetch() {
+            String[] columns = new String[] {
+                    KEY_ID,CITY_ID
+            };
+            Cursor cursor = database.query(TABLE_CONTACTS, columns, null, null, null, null, null);
+           String result ="";
+            int iName = cursor.getColumnIndex(CITY_ID);
+           for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
+           {
+              result = result+","+cursor.getString(iName);
+               System.out.println("RESULT "+result);
+              // arrayList.add(result);
+           }
+
+            return result;
+
+        }
+
 
     public SQLController(Context c) {
         ourcontext = c;
