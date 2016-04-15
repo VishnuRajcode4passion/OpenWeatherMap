@@ -21,7 +21,7 @@ public class CityListAdapter extends BaseAdapter{
     Bitmap image[]=new Bitmap[10];
 
     private static LayoutInflater inflater=null;
-    public CityListAdapter(Context context, String[] city,String[] temperature, Bitmap[] image) {
+    public CityListAdapter(Context context, String[] city, String[] temperature, Bitmap[] image) {
         // TODO Auto-generated constructor stub
         this.context=context;
         this.temperature=temperature;
@@ -59,10 +59,10 @@ public class CityListAdapter extends BaseAdapter{
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.city_list, null);
-        holder.img=(ImageView) rowView.findViewById(R.id.imageView3);
-        holder.tvTemperature=(TextView) rowView.findViewById(R.id.textView15);
-        holder.tvCity=(TextView) rowView.findViewById(R.id.textView6);
+        rowView = inflater.inflate(R.layout.single_row2, null);
+        holder.img=(ImageView) rowView.findViewById(R.id.image);
+        holder.tvTemperature=(TextView) rowView.findViewById(R.id.text);
+        holder.tvCity=(TextView) rowView.findViewById(R.id.text2);
         System.out.println("TEMPERATURE "+temperature[position]);
         holder.tvTemperature.setText(temperature[position] + " °C");
         holder.img.setImageBitmap(image[position]);

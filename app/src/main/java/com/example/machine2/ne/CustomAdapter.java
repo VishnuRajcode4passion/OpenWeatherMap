@@ -31,6 +31,7 @@ public class CustomAdapter extends BaseAdapter{
         //imageId=prgmImages;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        
     }
     @Override
     public int getCount() {
