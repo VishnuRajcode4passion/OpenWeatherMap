@@ -16,12 +16,15 @@ public class Cities {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getTemperature() {
         return temperature;
     }
+
     public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
@@ -29,6 +32,7 @@ public class Cities {
     public void setIcon(Bitmap icon) {
         this.icon = icon;
     }
+
     public Bitmap getIcon() {
         return icon;
     }

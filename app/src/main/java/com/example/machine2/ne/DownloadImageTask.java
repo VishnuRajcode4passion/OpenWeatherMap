@@ -10,35 +10,38 @@ import java.io.InputStream;
 import java.net.URL;
 
 
-public class DownloadImageTask extends AsyncTask<String,Void,Bitmap> {
+public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
-    ImageView imageView;
-    String urlOfImage;
+    ImageView icon;
     Bitmap image;
+
+    String urlOfImage;
+
     InputStream inputStream;
 
     public DownloadImageTask(ImageView imageView) {
-        this.imageView = imageView;
+        this.icon = imageView;
     }
 
     // fetching image from url
-    protected Bitmap doInBackground(String...urls){
+    protected Bitmap doInBackground(String... urls) {
         urlOfImage = urls[0];
         image = null;
-    try{
-        inputStream = new URL(urlOfImage).openStream();
-        image = BitmapFactory.decodeStream(inputStream);
-    }catch(Exception e){
-        e.printStackTrace();
+        try {
+            inputStream = new URL(urlOfImage).openStream();
+            image = BitmapFactory.decodeStream(inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return image;
+
     }
-    return image;
 
-}
     //set image on bitmap
-    protected void onPostExecute(Bitmap result){
+    protected void onPostExecute(Bitmap result) {
 
-        imageView.setImageBitmap(result);
+        icon.setImageBitmap(result);
 
-  }
- }
+    }
+}
 

@@ -5,10 +5,7 @@ package com.example.machine2.ne;
  */
 
 
-import java.util.List;
-
 import android.app.Activity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CityListAdapter extends ArrayAdapter<Cities> {
 
-    private Activity activity;
+    private Activity layoutActivity;
 
     public CityListAdapter(Activity activity, int resource, List<Cities> cities) {
         super(activity, resource, cities);
-        this.activity = activity;
+        this.layoutActivity = activity;
 
     }
 
@@ -31,7 +30,7 @@ public class CityListAdapter extends ArrayAdapter<Cities> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder = null;
-        LayoutInflater inflater = (LayoutInflater) activity
+        LayoutInflater inflater = (LayoutInflater) layoutActivity
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         // If holder not exist then locate all view from UI file.
         if (convertView == null) {
@@ -49,7 +48,7 @@ public class CityListAdapter extends ArrayAdapter<Cities> {
         Cities city = getItem(position);
 
         holder.name.setText(city.getName());
-        holder.temperature.setText(city.getTemperature());
+        holder.temperature.setText(city.getTemperature() + "°C");
         holder.image.setImageBitmap(city.getIcon());
 
         return convertView;

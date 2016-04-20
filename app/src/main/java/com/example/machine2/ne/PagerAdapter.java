@@ -2,9 +2,9 @@
 package com.example.machine2.ne;
 
 
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
@@ -14,7 +14,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
-
+//tab movement views
     @Override
     public Fragment getItem(int position) {
 
@@ -30,6 +30,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 return null;
         }
     }
+//number of tab movements
     @Override
     public int getCount() {
         return mNumOfTabs;

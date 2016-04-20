@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2196F3"
     android:fitsSystemWindows="true"
-    tools:context="com.example.machine2.ne.MainActivity"
-    android:background="#2196F3">
+    tools:context="com.example.machine2.ne.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
